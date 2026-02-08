@@ -1,8 +1,11 @@
 import { MapPin, Phone, MoreVertical, Building2 } from "lucide-react";
 import Card from "../ui/Card";
 import ClinicStatusBadge from "./ClinicStatusBadge";
+import { useNavigate } from "react-router-dom";
 
 export default function ClinicCard({ clinic }) {
+  const navigate = useNavigate();
+
   return (
     <Card className="flex flex-col justify-between">
       {/* Header */}
@@ -13,9 +16,9 @@ export default function ClinicCard({ clinic }) {
           <ClinicStatusBadge status={clinic.status} />
         </div>
 
-        <button className="text-zinc-400 hover:text-white">
+        {/* <button className="text-zinc-400 hover:text-white">
           <MoreVertical className="h-4 w-4" />
-        </button>
+        </button> */}
       </div>
 
       {/* Body */}
@@ -34,7 +37,9 @@ export default function ClinicCard({ clinic }) {
       </div>
 
       {/* Footer */}
-      <button className="mt-4 w-full rounded-lg border border-white/10 bg-zinc-800 py-2 text-sm text-white hover:bg-zinc-700">
+      <button 
+        onClick={() => navigate(`/clinics/${clinic.id}`)}
+        className="mt-4 w-full rounded-lg border border-white/10 bg-zinc-800 py-2 text-sm text-white hover:bg-zinc-700">
         View Clinic Details
       </button>
     </Card>

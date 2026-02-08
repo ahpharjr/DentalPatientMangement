@@ -1,6 +1,7 @@
 import PageHeader from "../components/ui/PageHeader";
 import ClinicCard from "../components/clinics/ClinicCard";
 import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const clinics = [
   {
@@ -19,13 +20,17 @@ const clinics = [
 ];
 
 export default function Clinics() {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-6">
       <PageHeader
         title="Clinics"
         subtitle="Manage your dental clinics across various locations"
         action={
-          <button className="flex items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-white hover:bg-zinc-700">
+          <button 
+            onClick={() => navigate("/clinics/new")}
+            className="flex items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-white hover:bg-zinc-700">
             <Plus className="h-4 w-4" />
             Add Clinic
           </button>
