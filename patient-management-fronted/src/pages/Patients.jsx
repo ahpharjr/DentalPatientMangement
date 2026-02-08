@@ -1,5 +1,6 @@
 import PageHeader from "../components/ui/PageHeader";
 import { Plus, Search, MoreVertical } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const patients = [
   {
@@ -14,6 +15,8 @@ const patients = [
 ];
 
 export default function Patients() {
+    const navigate = useNavigate();
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -21,7 +24,9 @@ export default function Patients() {
         title="Patients"
         subtitle="Manage your dental patients and their records"
         action={
-          <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800">
+          <button 
+            onClick={()=> navigate("/patients/new")}
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800">
             <Plus className="h-4 w-4" />
             Add Patient
           </button>
