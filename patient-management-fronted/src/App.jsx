@@ -1,14 +1,20 @@
-import './App.css'
-import AppLayout from './components/layout/AppLayout'
-import Dashboard from './pages/Dashboard'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import AppLayout from "./components/layout/AppLayout";
+import Dashboard from "./pages/Dashboard";
+import Clinics from "./pages/Clinics";
 
 function App() {
-
   return (
-    <AppLayout>
-      <Dashboard />
-    </AppLayout>
-  )
+    <BrowserRouter>
+      <AppLayout>
+        <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/clinics" element={<Clinics />} />
+        </Routes>
+      </AppLayout>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
