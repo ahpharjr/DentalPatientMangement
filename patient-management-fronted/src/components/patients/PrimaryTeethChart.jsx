@@ -1,5 +1,32 @@
 import { ArrowLeft, Activity } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+
+const PRIMARY_TOOTH_NAMES = {
+  A: "1st Molar",
+  B: "2nd Molar",
+  C: "Canine",
+  D: "Lateral Incisor",
+  E: "Central Incisor",
+
+  F: "Central Incisor",
+  G: "Lateral Incisor",
+  H: "Canine",
+  I: "1st Molar",
+  J: "2nd Molar",
+
+  K: "2nd Molar",
+  L: "1st Molar",
+  M: "Canine",
+  N: "Lateral Incisor",
+  O: "Central Incisor",
+
+  P: "Central Incisor",
+  Q: "Lateral Incisor",
+  R: "Canine",
+  S: "1st Molar",
+  T: "2nd Molar",
+};
 
 const upperRight = ["A", "B", "C", "D", "E"];
 const upperLeft = ["F", "G", "H", "I", "J"];
@@ -10,8 +37,15 @@ export default function PrimaryTeethChart() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const [selectedTooth, setSelectedTooth] = useState(null);
+
   const Tooth = ({ label }) => (
-    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-green-500 bg-green-500/10 text-sm font-medium text-green-400">
+    <div
+      onClick={() => setSelectedTooth(label)}
+      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg
+      border border-green-500 bg-green-500/10 text-sm font-medium text-green-400
+      hover:ring hover:ring-green-400/40 transition"
+    >
       {label}
     </div>
   );
@@ -138,6 +172,14 @@ export default function PrimaryTeethChart() {
           <Summary label="Missing" value="0" color="text-zinc-400" />
         </div>
       </div>
+
+      {selectedTooth && (
+        <ToothModal
+          tooth={selectedTooth}
+          onClose={() => setSelectedTooth(null)}
+        />
+      )}
+
     </div>
   );
 }
@@ -169,6 +211,55 @@ function Summary({ label, value, color }) {
     <div>
       <p className={`text-xl font-semibold ${color}`}>{value}</p>
       <p className="text-xs text-zinc-400">{label}</p>
+    </div>
+  );
+}
+
+function ToothModal({ tooth, onClose }) {
+  const toothName = PRIMARY_TOOTH_NAMES[tooth] || "Unknown Tooth";
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+      onClick={onClose}
+    >
+      <div
+        className="w-90 rounded-xl border border-white/10 bg-zinc-900 p-5 text-white"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h3 className="text-sm font-medium">
+              Tooth {tooth} – {toothName}
+            </h3>
+            <span className="rounded-full border border-green-500 bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+              Healthy
+            </span>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="text-zinc-400 hover:text-white"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Body */}
+        <p className="mb-4 text-sm text-zinc-400">
+          No markings for this tooth.
+        </p>
+
+        {/* Action */}
+        <button
+          className="flex w-full items-center justify-center gap-2 rounded-lg
+            bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200"
+        >
+          <span className="text-lg">＋</span>
+          Add First Marking
+        </button>
+      </div>
     </div>
   );
 }
