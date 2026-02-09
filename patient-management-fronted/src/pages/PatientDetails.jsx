@@ -1,6 +1,10 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, MapPin, Phone, Mail } from "lucide-react";
-import Card from "../components/ui/Card";
+import { ArrowLeft, Pencil } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
+import AppointmentHistoryCard from "../components/patients/AppointmentHistoryCard";
+import PersonalInfoCard from "../components/patients/PersonalInfoCard";
+import ContactInfoCard from "../components/patients/ContactInfoCard";
+import MedicalHistoryCard from "../components/patients/MedicalHistoryCard";
+import DentalChartsCard from "../components/patients/DentalChartsCard";
 
 const patients = [
   {
@@ -19,59 +23,49 @@ const patients = [
 export default function PatientDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const patient = patients.find((p) => p.id === id);
 
-  if (!patient) {
-    return <p className="text-zinc-400">Patient not found</p>;
-  }
+  if (!patient) return null;
 
   return (
     <div className="space-y-6">
-      <button
-        onClick={() => navigate("/patients")}
-        className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Back to Patients
-      </button>
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <button
+            onClick={() => navigate("/patients")}
+            className="mb-2 flex items-center gap-1 text-sm text-zinc-400 hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Patients
+          </button>
 
-      <div>
-        <h1 className="text-2xl font-bold text-white">{patient.fullName}</h1>
-        <p className="text-zinc-400">Patient details and information</p>
+          <h1 className="text-2xl font-semibold text-white">
+            {patient.fullName}
+          </h1>
+          <p className="text-sm text-zinc-400">
+            Patient details and information
+          </p>
+        </div>
+
+        <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800">
+          <Pencil className="h-4 w-4" />
+          Edit Patient
+        </button>
       </div>
 
+      {/* Appointment History */}
+      <AppointmentHistoryCard />
+
+      {/* Info Sections */}
       <div className="grid gap-6 md:grid-cols-2">
-        <Card>
-          <h3 className="mb-4 font-medium text-white">Personal Information</h3>
-          <div className="space-y-2 text-sm text-zinc-300">
-            <p><span className="text-zinc-400">Gender:</span> {patient.gender}</p>
-            <p><span className="text-zinc-400">Date of Birth:</span> {patient.dob}</p>
-            <p><span className="text-zinc-400">Marital Status:</span> {patient.maritalStatus}</p>
-            <p><span className="text-zinc-400">Clinic:</span> {patient.clinic}</p>
-          </div>
-        </Card>
-
-        <Card>
-          <h3 className="mb-4 font-medium text-white">Contact Information</h3>
-          <div className="space-y-3 text-sm text-zinc-300">
-            <div className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 mt-0.5 text-zinc-400" />
-              <p>{patient.address}</p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-zinc-400" />
-              <p>{patient.email || "Not provided"}</p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-zinc-400" />
-              <p>{patient.phone || "Not provided"}</p>
-            </div>
-          </div>
-        </Card>
+        <PersonalInfoCard patient={patient} />
+        <ContactInfoCard patient={patient} />
       </div>
+
+      <MedicalHistoryCard />
+
+      <DentalChartsCard />
     </div>
   );
 }
