@@ -1,6 +1,7 @@
 import { FileText } from "lucide-react";
 
 export default function MedicalHistoryCard() {
+
   return (
     <div className="rounded-xl border border-white/10 bg-zinc-900 p-5">
       {/* Header */}

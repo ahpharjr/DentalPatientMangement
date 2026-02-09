@@ -11,6 +11,7 @@ import Procedures from "./pages/Procedures";
 import ProcedureDetails from "./pages/ProcedureDetails";
 import AddProcedure from "./pages/AddProcedure";
 import EditProcedure from "./pages/EditProcedure";
+import PrimaryTeethChart from "./components/patients/PrimaryTeethChart";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/procedures/:id" element={<ProcedureDetails />} />
           <Route path="/procedures/new" element={<AddProcedure />} />
           <Route path="/procedures/:id/edit" element={<EditProcedure />} />
+          <Route path="/patients/:id/primary-teeth" element={<PrimaryTeethChart />} />  
         </Routes>
       </AppLayout>
     </BrowserRouter>
