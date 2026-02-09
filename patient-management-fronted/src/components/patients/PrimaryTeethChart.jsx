@@ -1,4 +1,4 @@
-import { ArrowLeft, Activity } from "lucide-react";
+import { ArrowLeft, Activity, Trash2 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
@@ -28,6 +28,16 @@ const PRIMARY_TOOTH_NAMES = {
   T: "2nd Molar",
 };
 
+const CONDITION_STYLES = {
+  healthy: "border-green-500 bg-green-500/10 text-green-400",
+  caries: "border-red-500 bg-red-500/10 text-red-400",
+  filled: "border-blue-500 bg-blue-500/10 text-blue-400",
+  crown: "border-yellow-500 bg-yellow-500/10 text-yellow-400",
+  root_canal: "border-purple-500 bg-purple-500/10 text-purple-400",
+  missing: "border-zinc-500 bg-zinc-500/20 text-zinc-300",
+  problem: "border-orange-500 bg-orange-500/10 text-orange-400",
+};
+
 const upperRight = ["A", "B", "C", "D", "E"];
 const upperLeft = ["F", "G", "H", "I", "J"];
 const lowerRight = ["K", "L", "M", "N", "O"];
@@ -38,17 +48,110 @@ export default function PrimaryTeethChart() {
   const { id } = useParams();
 
   const [selectedTooth, setSelectedTooth] = useState(null);
+  const [showAddMarking, setShowAddMarking] = useState(false);
+  const [toothMarkings, setToothMarkings] = useState({});
 
-  const Tooth = ({ label }) => (
-    <div
-      onClick={() => setSelectedTooth(label)}
-      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg
-      border border-green-500 bg-green-500/10 text-sm font-medium text-green-400
-      hover:ring hover:ring-green-400/40 transition"
-    >
-      {label}
-    </div>
+  const Tooth = ({ label }) => {
+    const markings = toothMarkings[label];
+    const latest = markings?.[markings.length - 1];
+
+    const style =
+      CONDITION_STYLES[latest?.condition] ??
+      CONDITION_STYLES.healthy;
+
+    return (
+      <div
+        onClick={() => setSelectedTooth(label)}
+        className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg
+        border text-sm font-medium transition hover:ring hover:ring-white/30
+        ${style}`}
+      >
+        {label}
+      </div>
+    );
+  };
+
+  const summary = Object.values(
+    ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+      "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"]
+  ).reduce(
+    (acc, tooth) => {
+      const markings = toothMarkings[tooth];
+      const latest = markings?.[markings.length - 1];
+
+      if (!latest) {
+        acc.healthy += 1;
+      } else {
+        acc[latest.condition] =
+          (acc[latest.condition] || 0) + 1;
+      }
+
+      return acc;
+    },
+    {
+      healthy: 0,
+      caries: 0,
+      filled: 0,
+      crown: 0,
+      root_canal: 0,
+      missing: 0,
+      problem: 0,
+    }
   );
+
+  const SUMMARY_META = {
+    healthy: {
+      label: "Healthy Teeth",
+      color: "text-green-400",
+    },
+    caries: {
+      label: "Caries",
+      color: "text-red-500",
+    },
+    filled: {
+      label: "Filled",
+      color: "text-blue-500",
+    },
+    crown: {
+      label: "Crown",
+      color: "text-yellow-500",
+    },
+    root_canal: {
+      label: "Root Canal",
+      color: "text-purple-500",
+    },
+    missing: {
+      label: "Missing",
+      color: "text-zinc-400",
+    },
+    problem: {
+      label: "Problem",
+      color: "text-orange-500",
+    },
+  };
+
+  const DEFAULT_SUMMARY_KEYS = [
+    "healthy",
+    "caries",
+    "filled",
+    "missing",
+  ];
+
+  const OTHER_CONDITIONS = Object.keys(SUMMARY_META).filter(
+    (k) => !DEFAULT_SUMMARY_KEYS.includes(k)
+  );
+
+  const hasOtherMarkings = OTHER_CONDITIONS.some(
+    (k) => summary[k] > 0
+  );
+
+  const summaryKeysToRender = hasOtherMarkings
+    ? Object.entries(summary)
+      .filter(([key, value]) =>
+        key === "healthy" ? true : value > 0
+      )
+      .map(([key]) => key)
+    : DEFAULT_SUMMARY_KEYS;
 
   return (
     <div className="space-y-6">
@@ -164,23 +267,50 @@ export default function PrimaryTeethChart() {
           </div>
         </div>
 
-        {/* Summary */}
-        <div className="grid grid-cols-4 gap-4 border-t border-white/10 pt-6 text-center">
-          <Summary label="Healthy Teeth" value="20" color="text-green-400" />
-          <Summary label="Caries" value="0" color="text-red-500" />
-          <Summary label="Filled" value="0" color="text-blue-500" />
-          <Summary label="Missing" value="0" color="text-zinc-400" />
+        <div
+          className="flex flex-wrap items-center justify-center gap-6
+             border-t border-white/10 pt-6 text-center"
+        >
+          {summaryKeysToRender.map((key) => {
+            const meta = SUMMARY_META[key];
+            if (!meta) return null;
+
+            return (
+              <Summary
+                key={key}
+                label={meta.label}
+                value={summary[key]}
+                color={meta.color}
+              />
+            );
+          })}
         </div>
+
       </div>
 
-      {selectedTooth && (
+      {selectedTooth && !showAddMarking && (
         <ToothModal
           tooth={selectedTooth}
+          markings={toothMarkings[selectedTooth] || []}
           onClose={() => setSelectedTooth(null)}
+          onAddMarking={() => setShowAddMarking(true)}
         />
       )}
 
-    </div>
+      {showAddMarking && selectedTooth && (
+        <AddMarkingModal
+          tooth={selectedTooth}
+          onSave={(data) => {
+            setToothMarkings(prev => ({
+              ...prev,
+              [selectedTooth]: [...(prev[selectedTooth] || []), data],
+            }));
+            setShowAddMarking(false);
+          }}
+          onClose={() => setShowAddMarking(false)}
+        />
+      )}
+    </div >
   );
 }
 
@@ -208,15 +338,129 @@ function Legend({ color, label }) {
 
 function Summary({ label, value, color }) {
   return (
-    <div>
+    <div className="min-w-26">
       <p className={`text-xl font-semibold ${color}`}>{value}</p>
       <p className="text-xs text-zinc-400">{label}</p>
     </div>
   );
 }
 
-function ToothModal({ tooth, onClose }) {
-  const toothName = PRIMARY_TOOTH_NAMES[tooth] || "Unknown Tooth";
+
+/* ---------- Tooth Modal ---------- */
+function ToothModal({ tooth, markings, onClose, onAddMarking }) {
+  const latest = markings.length > 0 ? markings[markings.length - 1] : null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center
+                 bg-black/60 border border-white/20"
+      onClick={onClose}
+    >
+      <div
+        className="w-105 rounded-xl bg-zinc-900 p-5 text-white
+                   border border-white/25 shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h3 className="text-sm font-semibold">
+              Tooth {tooth} – {PRIMARY_TOOTH_NAMES[tooth]}
+            </h3>
+
+            {latest ? (
+              <span
+                className={`rounded-full px-2 py-0.5 text-xs border
+                  ${CONDITION_STYLES[latest.condition]}`}
+              >
+                {latest.condition.replace("_", " ")}
+              </span>
+            ) : (
+              <span className="rounded-full border border-green-500
+                               bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                Healthy
+              </span>
+            )}
+          </div>
+
+          <button
+            onClick={onClose}
+            className="text-zinc-400 hover:text-white text-sm"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Marking History Header */}
+        <div className="mb-2 flex items-center justify-between">
+          <p className="text-xs font-medium text-zinc-400">
+            Marking History
+          </p>
+
+          <button
+            onClick={onAddMarking}
+            className="flex items-center gap-1 rounded-md
+                       border border-white/10 bg-zinc-800
+                       px-3 py-1 text-xs hover:bg-zinc-700"
+          >
+            <span className="text-sm">＋</span>
+            Add Marking
+          </button>
+        </div>
+
+        {/* Divider */}
+        <div className="mb-3 h-px bg-white/10" />
+
+        {/* History Content */}
+        {markings.length === 0 ? (
+          <p className="py-6 text-center text-sm text-zinc-400">
+            No markings for this tooth.
+          </p>
+        ) : (
+          <div className="space-y-2">
+            {markings.map((m, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-between
+                           rounded-lg border border-white/10
+                           bg-zinc-800/50 p-3"
+              >
+                <div>
+                  {/* <p className="text-xs text-zinc-400">{m.date}</p> */}
+
+                  <div>
+                    <span
+                      className={`mt-1 inline-block rounded-full px-3 py-1
+                      text-sm border ${CONDITION_STYLES[m.condition]}`}
+                    >
+                      {m.condition.replace("_", " ")}
+                    </span>
+                    <span className="pl-1 text-xs text-zinc-400">{m.date}</span>
+                  </div>
+
+                  {m.note && (
+                    <p className="text-sm p-2 text-zinc-300 leading-snug">
+                      {m.note}
+                    </p>
+                  )}
+                </div>
+
+                <button className="text-red-400 hover:text-red-500">
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Add Marking Modal ---------- */
+function AddMarkingModal({ tooth, onSave, onClose }) {
+  const [condition, setCondition] = useState("");
+  const [note, setNote] = useState("");
 
   return (
     <div
@@ -224,19 +468,14 @@ function ToothModal({ tooth, onClose }) {
       onClick={onClose}
     >
       <div
-        className="w-90 rounded-xl border border-white/10 bg-zinc-900 p-5 text-white"
+        className="w-96 rounded-xl bg-zinc-900 p-5 text-white"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="mb-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <h3 className="text-sm font-medium">
-              Tooth {tooth} – {toothName}
-            </h3>
-            <span className="rounded-full border border-green-500 bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
-              Healthy
-            </span>
-          </div>
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="text-sm font-semibold">
+            Add Marking Record – Tooth {tooth} ({PRIMARY_TOOTH_NAMES[tooth]})
+          </h3>
 
           <button
             onClick={onClose}
@@ -246,20 +485,73 @@ function ToothModal({ tooth, onClose }) {
           </button>
         </div>
 
-        {/* Body */}
-        <p className="mb-4 text-sm text-zinc-400">
-          No markings for this tooth.
-        </p>
+        {/* Condition */}
+        <div className="mb-4">
+          <label className="mb-1 block text-xs text-zinc-400">
+            Condition
+          </label>
+          <select
+            value={condition}
+            onChange={(e) => setCondition(e.target.value)}
+            className="w-full rounded-md border border-white/10
+                       bg-zinc-800 px-3 py-2 text-sm
+                       focus:outline-none focus:ring-1 focus:ring-white/30"
+          >
+            <option value="">Select condition</option>
+            {Object.keys(CONDITION_STYLES).map((c) => (
+              <option key={c} value={c}>
+                {c.replace("_", " ")}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        {/* Action */}
-        <button
-          className="flex w-full items-center justify-center gap-2 rounded-lg
-            bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200"
-        >
-          <span className="text-lg">＋</span>
-          Add First Marking
-        </button>
+        {/* Notes */}
+        <div className="mb-6">
+          <label className="mb-1 block text-xs text-zinc-400">
+            Notes
+          </label>
+          <textarea
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            rows={3}
+            placeholder="Enter marking notes..."
+            className="w-full rounded-md border border-white/10
+                       bg-zinc-800 px-3 py-2 text-sm
+                       focus:outline-none focus:ring-1 focus:ring-white/30"
+          />
+        </div>
+
+        {/* Actions */}
+        <div className="flex gap-3">
+          <button
+            disabled={!condition}
+            onClick={() =>
+              onSave({
+                condition,
+                note,
+                date: new Date().toISOString().split("T")[0],
+              })
+            }
+            className="flex-1 rounded-md bg-zinc-300 py-2 text-sm
+                       font-medium text-black
+                       disabled:opacity-40"
+          >
+            Save Marking
+          </button>
+
+          <button
+            onClick={onClose}
+            className="flex-1 rounded-md border border-white/10
+                       bg-zinc-800 py-2 text-sm
+                       hover:bg-zinc-700"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
 }
+
+
