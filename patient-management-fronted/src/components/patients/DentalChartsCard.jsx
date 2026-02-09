@@ -44,7 +44,9 @@ export default function DentalChartsCard() {
                     <p className="mb-4 text-xs text-zinc-400">
                         Universal Numbering System (1–32)
                     </p>
-                    <button className="w-full rounded-lg bg-white px-4 py-2 text-sm text-black hover:bg-zinc-200">
+                    <button 
+                        onClick={() => navigate(`/patients/${id}/permanent-teeth`)}
+                        className="w-full rounded-lg bg-white px-4 py-2 text-sm text-black hover:bg-zinc-200">
                         View Permanent Chart
                     </button>
                 </div>
