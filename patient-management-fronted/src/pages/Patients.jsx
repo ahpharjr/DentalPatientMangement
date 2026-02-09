@@ -1,10 +1,38 @@
 import PageHeader from "../components/ui/PageHeader";
-import { Plus, Search, MoreVertical } from "lucide-react";
+import RowActions from "../components/ui/RowActions";
+import { Plus, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const patients = [
   {
-    id: 1,
+    id: "1",
+    name: "Dela Cruz, Juan M.",
+    dob: "Jul 5, 1986",
+    gender: "Male",
+    email: "—",
+    status: "Married",
+    clinic: "Clinic 1",
+  },
+    {
+    id: "2",
+    name: "Dela Cruz, Juan M.",
+    dob: "Jul 5, 1986",
+    gender: "Male",
+    email: "—",
+    status: "Married",
+    clinic: "Clinic 1",
+  },
+    {
+    id: "3",
+    name: "Dela Cruz, Juan M.",
+    dob: "Jul 5, 1986",
+    gender: "Male",
+    email: "—",
+    status: "Married",
+    clinic: "Clinic 1",
+  },
+    {
+    id: "4",
     name: "Dela Cruz, Juan M.",
     dob: "Jul 5, 1986",
     gender: "Male",
@@ -15,18 +43,18 @@ const patients = [
 ];
 
 export default function Patients() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <PageHeader
         title="Patients"
         subtitle="Manage your dental patients and their records"
         action={
-          <button 
-            onClick={()=> navigate("/patients/new")}
-            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800">
+          <button
+            onClick={() => navigate("/patients/new")}
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800"
+          >
             <Plus className="h-4 w-4" />
             Add Patient
           </button>
@@ -38,9 +66,8 @@ export default function Patients() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
           <input
-            type="text"
             placeholder="Search patients by name..."
-            className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700"
+            className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
           />
         </div>
         <button className="rounded-lg bg-zinc-800 px-4 text-sm text-white hover:bg-zinc-700">
@@ -54,11 +81,11 @@ export default function Patients() {
           <thead className="bg-zinc-900 text-zinc-400">
             <tr>
               <th className="px-4 py-3 text-left">Name</th>
-              <th className="px-4 py-3 text-left">Date of Birth</th>
-              <th className="px-4 py-3 text-left">Gender</th>
-              <th className="px-4 py-3 text-left">Email</th>
-              <th className="px-4 py-3 text-left">Status</th>
-              <th className="px-4 py-3 text-left">Clinic</th>
+              <th className="px-4 py-3">DOB</th>
+              <th className="px-4 py-3">Gender</th>
+              <th className="px-4 py-3">Email</th>
+              <th className="px-4 py-3">Status</th>
+              <th className="px-4 py-3">Clinic</th>
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -72,14 +99,16 @@ export default function Patients() {
                 <td className="px-4 py-3 text-white">{p.name}</td>
                 <td className="px-4 py-3">{p.dob}</td>
                 <td className="px-4 py-3">{p.gender}</td>
-                <td className="px-4 py-3">{p.email}</td> 
+                <td className="px-4 py-3">{p.email}</td>
                 <td className="px-4 py-3">{p.status}</td>
                 <td className="px-4 py-3">{p.clinic}</td>
 
                 <td className="px-4 py-3 text-right">
-                  <button className="rounded-md p-1 hover:bg-zinc-800">
-                    <MoreVertical className="h-4 w-4" />
-                  </button>
+                  <RowActions
+                    onView={() => navigate(`/patients/${p.id}`)}
+                    onEdit={() => navigate(`/patients/${p.id}/edit`)}
+                    onDelete={() => alert("Delete patient")}
+                  />
                 </td>
               </tr>
             ))}

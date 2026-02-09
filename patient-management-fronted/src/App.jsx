@@ -6,6 +6,7 @@ import NewClinic from "./pages/NewClinic";
 import ClinicDetails from "./pages/ClinicDetails";
 import Patients from "./pages/Patients";
 import AddPatient from "./pages/AddPatient";
+import PatientDetails from "./pages/PatientDetails";
 import "./App.css";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/clinics/:id" element={<ClinicDetails />} />
           <Route path="/patients" element={<Patients />} />
           <Route path="/patients/new" element={<AddPatient />} />
+          <Route path="/patients/:id" element={<PatientDetails />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>
