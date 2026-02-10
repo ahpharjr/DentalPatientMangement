@@ -15,6 +15,7 @@ import PrimaryTeethChart from "./components/patients/PrimaryTeethChart";
 import PermanentTeethChart from "./components/patients/PermanentTeethChart";
 import Appointments from "./pages/Appointments";
 import NewAppointment from "./pages/NewAppointment";
+import AppointmentDetails from "./pages/appointments/AppointmentDetails";
 import "./App.css";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/patients/:id/permanent-teeth" element={<PermanentTeethChart />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/appointments/new" element={<NewAppointment />} />
+          <Route path="/appointments/:id" element={<AppointmentDetails />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>
