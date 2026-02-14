@@ -157,11 +157,11 @@ export default function PrimaryTeethChart() {
     <div className="space-y-6">
       {/* Back */}
       <button
-        onClick={() => navigate(`/patients/${id}`)}
+        onClick={() => navigate(-1)}
         className="flex items-center gap-1 text-sm text-zinc-400 hover:text-white"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Patient Details
+        Back
       </button>
 
       {/* Title */}

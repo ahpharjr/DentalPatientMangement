@@ -17,6 +17,8 @@ import Appointments from "./pages/appointments/Appointments";
 import NewAppointment from "./pages/appointments/NewAppointment";
 import AppointmentDetails from "./pages/appointments/AppointmentDetails";
 import TreatmentHistory from "./pages/treatments/TreatmentHistory";
+import TreatmentHistoryDetails from "./pages/treatments/TreatmentHistoryDetails";
+import Treatments from "./pages/treatments/Treatments";
 import TreatmentDetails from "./pages/treatments/TreatmentDetails";
 import "./App.css";
 
@@ -42,8 +44,10 @@ function App() {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/appointments/new" element={<NewAppointment />} />
           <Route path="/appointments/:id" element={<AppointmentDetails />} />
+          <Route path="/treatments" element={<Treatments />} />
           <Route path="/treatment-history" element={<TreatmentHistory />} />
-          <Route path="/treatments/history/:id" element={<TreatmentDetails />} />
+          <Route path="/treatments/history/:id" element={<TreatmentHistoryDetails />} />
+          <Route path="/treatments/:id" element={<TreatmentDetails />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>

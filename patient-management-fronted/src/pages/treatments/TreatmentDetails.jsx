@@ -1,184 +1,167 @@
-import { ArrowLeft, Printer } from "lucide-react";
+import { ArrowLeft, Pencil, Printer } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+import MedicalHistoryCard from "../../components/patients/MedicalHistoryCard";
+import DentalChartsCard from "../../components/patients/DentalChartsCard";
+import TreatmentHistoryCard from "../../components/patients/TreatmentHistoryCard";
 
 export default function TreatmentDetails() {
-  const navigate = useNavigate();
-  const { id } = useParams();
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-  // mock data (replace with API later)
-  const treatment = {
-    id,
-    status: "completed",
-    patient: {
-      name: "Dela Cruz, Juan",
-      phone: "09123456789",
-      email: "Not provided",
-    },
-    clinic: "Mong Yang Dental Clinic",
-    dentist: "Dr. Smith",
-    completedAt: "2025-09-29T09:00",
-    payment: {
-      status: "paid",
-      method: "Cash",
-      total: 200,
-    },
-    procedures: [
-      {
-        id: 1,
-        name: "Dental Cleaning",
-        tooth: "All",
-        findings: "Advised to clean again after 3 months",
-      },
-    ],
-    createdAt: "2025-09-27T18:07",
-    updatedAt: "2025-09-27T18:09",
-  };
+    // Mock treatment data
+    const treatment = {
+        id,
+        date: "September 29, 2025",
+        status: "Ongoing",
+        paymentStatus: "Unpaid",
+        total: 1500,
+        dentist: "Dr. Maria Santos",
+        notes: "Patient complained of pain on lower molar.",
+        patient: {
+            id: "1",
+            fullName: "Dela Cruz, Juan Mantala",
+            gender: "Male",
+            dob: "July 5th, 1986",
+            maritalStatus: "Married",
+            clinic: "Clinic 1",
+            address: "123 J. Acosta, Pagsil Laguna",
+            email: null,
+            phone: null,
+        },
+        procedures: [
+            {
+                name: "Tooth Extraction",
+                tooth: "36",
+                findings: "Severe decay",
+                cost: 1500,
+            },
+        ],
+        prescription: [
+            {
+                name: "Amoxicillin 500mg",
+                dosage: "1 capsule every 8 hours for 7 days",
+            },
+            {
+                name: "Ibuprofen 400mg",
+                dosage: "1 tablet every 6 hours as needed for pain",
+            },
+        ],
+    };
 
-  const formatDateTime = (date) =>
-    new Date(date).toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-    });
-
-  return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate(-1)}
-            className="rounded-lg border border-white/10 bg-zinc-900 p-2 hover:bg-zinc-800"
-          >
-            <ArrowLeft className="h-4 w-4 text-white" />
-          </button>
-
-          <div>
-            <h1 className="text-xl font-semibold text-white">
-              Treatment Details
-            </h1>
-            <p className="text-sm text-zinc-400">
-              Treatment ID: #{treatment.id}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400">
-            Completed
-          </span>
-
-          <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white hover:bg-zinc-800">
-            <Printer className="h-4 w-4" />
-            Print
-          </button>
-        </div>
-      </div>
-
-      {/* Patient + Treatment Info */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Patient Info */}
-        <div className="rounded-lg border border-white/10 bg-zinc-900 p-4">
-          <h3 className="mb-4 text-sm font-medium text-white">
-            Patient Information
-          </h3>
-
-          <div className="space-y-2 text-sm">
-            <Info label="Name" value={treatment.patient.name} />
-            <Info label="Phone" value={treatment.patient.phone} />
-            <Info label="Email" value={treatment.patient.email} />
-          </div>
-        </div>
-
-        {/* Treatment Info */}
-        <div className="rounded-lg border border-white/10 bg-zinc-900 p-4">
-          <h3 className="mb-4 text-sm font-medium text-white">
-            Treatment Information
-          </h3>
-
-          <div className="space-y-2 text-sm">
-            <Info label="Clinic" value={treatment.clinic} />
-            <Info label="Dentist" value={treatment.dentist} />
-            <Info
-              label="Completed At"
-              value={formatDateTime(treatment.completedAt)}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Procedures */}
-      <div className="rounded-lg border border-white/10 bg-zinc-900 p-4">
-        <h3 className="mb-4 text-sm font-medium text-white">
-          Procedures & Findings
-        </h3>
-
-        <div className="space-y-4">
-          {treatment.procedures.map((p) => (
-            <div
-              key={p.id}
-              className="rounded-lg border border-white/10 bg-zinc-950 p-3"
+    return (
+        <div className="space-y-6">
+            {/* Back */}
+            <button
+                onClick={() => navigate("/treatments")}
+                className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white"
             >
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-white">{p.name}</span>
-                <span className="text-zinc-400">Tooth: {p.tooth}</span>
-              </div>
+                <ArrowLeft className="h-4 w-4" />
+                Back to Treatments
+            </button>
 
-              <p className="mt-2 text-sm text-zinc-300">
-                {p.findings}
-              </p>
+            {/* Header */}
+            <div className="flex items-center justify-between">
+                <div>
+                    <h1 className="text-2xl font-semibold text-white">
+                        Treatment - {treatment.date}
+                    </h1>
+                    <p className="text-sm text-zinc-400">
+                        Complete treatment details and clinical information
+                    </p>
+                </div>
+
+                <div className="flex gap-2">
+                    <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800">
+                        <Pencil className="h-4 w-4" />
+                        Edit
+                    </button>
+
+                    <button className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200">
+                        <Printer className="h-4 w-4" />
+                        Print Prescription
+                    </button>
+                </div>
             </div>
-          ))}
+
+            <p>
+                <span className="font-medium text-white">Patient: </span>
+
+                <button
+                    onClick={() => navigate(`/patients/${treatment.patient.id}`)}
+                    className="text-blue-400 hover:text-blue-300 hover:underline"
+                >
+                    {treatment.patient.fullName}
+                </button>
+            </p>
+
+
+            {/* Dental Chart */}
+            <DentalChartsCard />
+
+            {/* Current Treatment Procedures */}
+            <Card title="Current Treatment Procedures">
+                <div className="space-y-4">
+                    {treatment.procedures.map((proc, index) => (
+                        <div
+                            key={index}
+                            className="rounded-lg border border-white/10 bg-zinc-950 p-4"
+                        >
+                            <p className="text-sm font-medium text-white">
+                                {proc.name}
+                            </p>
+
+                            <div className="mt-2 grid gap-2 text-sm text-zinc-300">
+                                <p>Tooth: {proc.tooth}</p>
+                                <p>Findings: {proc.findings}</p>
+                                <p>Cost: ₱{proc.cost.toFixed(2)}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-4 border-t border-white/10 pt-3 text-right text-sm text-white">
+                    Total: ₱{treatment.total.toFixed(2)}
+                </div>
+            </Card>
+
+            {/* Medical History Snapshot */}
+            <MedicalHistoryCard />
+
+            {/* Prescription Section */}
+            <Card title="Medical Prescription">
+                <div className="space-y-3">
+                    {treatment.prescription.map((med, index) => (
+                        <div
+                            key={index}
+                            className="rounded-lg border border-white/10 bg-zinc-950 p-4"
+                        >
+                            <p className="text-sm font-medium text-white">
+                                {med.name}
+                            </p>
+                            <p className="text-sm text-zinc-400">
+                                {med.dosage}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </Card>
+
+            {/* Previous Treatment History */}
+            <TreatmentHistoryCard />
+
         </div>
-      </div>
-
-      {/* Payment Summary */}
-      <div className="rounded-lg border border-white/10 bg-zinc-900 p-4">
-        <h3 className="mb-4 text-sm font-medium text-white">
-          Payment Summary
-        </h3>
-
-        <div className="grid gap-4 sm:grid-cols-3 text-sm">
-          <Info
-            label="Payment Status"
-            value={
-              <span
-                className={`rounded-full px-2 py-1 text-xs font-medium
-                ${
-                  treatment.payment.status === "paid"
-                    ? "bg-green-500/10 text-green-400"
-                    : "bg-red-500/10 text-red-400"
-                }`}
-              >
-                {treatment.payment.status.toUpperCase()}
-              </span>
-            }
-          />
-
-          <Info label="Method" value={treatment.payment.method} />
-          <Info
-            label="Total Cost"
-            value={`₱${treatment.payment.total.toFixed(2)}`}
-          />
-        </div>
-      </div>
-
-      {/* Metadata */}
-      <div className="text-xs text-zinc-500">
-        Created: {formatDateTime(treatment.createdAt)} • Last updated:{" "}
-        {formatDateTime(treatment.updatedAt)}
-      </div>
-    </div>
-  );
+    );
 }
 
-function Info({ label, value }) {
-  return (
-    <div className="flex justify-between gap-4">
-      <span className="text-zinc-400">{label}</span>
-      <span className="text-white">{value}</span>
-    </div>
-  );
+/* ---------- Reusable Card ---------- */
+
+function Card({ title, children }) {
+    return (
+        <div className="rounded-xl border border-white/10 bg-zinc-900 p-5">
+            <h3 className="mb-4 text-sm font-medium text-white">{title}</h3>
+            {children}
+        </div>
+    );
 }
+
+
