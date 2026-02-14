@@ -20,6 +20,7 @@ import TreatmentHistory from "./pages/treatments/TreatmentHistory";
 import TreatmentHistoryDetails from "./pages/treatments/TreatmentHistoryDetails";
 import Treatments from "./pages/treatments/Treatments";
 import TreatmentDetails from "./pages/treatments/TreatmentDetails";
+import NewTreatment from "./pages/treatments/NewTreatment";
 import "./App.css";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/treatment-history" element={<TreatmentHistory />} />
           <Route path="/treatments/history/:id" element={<TreatmentHistoryDetails />} />
           <Route path="/treatments/:id" element={<TreatmentDetails />} />
+          <Route path="/treatments/new" element={<NewTreatment />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>
