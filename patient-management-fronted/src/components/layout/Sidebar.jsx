@@ -7,7 +7,8 @@ import {
   Stethoscope,
   Calendar,
   BarChart3,
-  ClipboardCheck
+  ClipboardCheck,
+  Activity
 } from "lucide-react";
 
 const menu = [
@@ -17,8 +18,9 @@ const menu = [
   { label: "Patients", icon: User, path: "/patients" },
   { label: "Procedures", icon: Stethoscope, path: "/procedures" },
   { label: "Appointments", icon: Calendar, path: "/appointments" },
-  { label: "Reports", icon: BarChart3, path: "/reports" },
+  { label: "Treatment", icon: Activity, path: "/treatments" },
   { label: "Treatment History", icon: ClipboardCheck, path: "/treatment-history" },
+  { label: "Reports", icon: BarChart3, path: "/reports" },
 ];
 
 export default function Sidebar() {
@@ -35,10 +37,9 @@ export default function Sidebar() {
             to={item.path}
             className={({ isActive }) =>
               `flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition
-              ${
-                isActive
-                  ? "bg-zinc-800 text-white"
-                  : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
+              ${isActive
+                ? "bg-zinc-800 text-white"
+                : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
               }`
             }
           >

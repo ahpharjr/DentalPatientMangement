@@ -1,23 +1,23 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import Dashboard from "./pages/Dashboard";
-import Clinics from "./pages/Clinics";
-import NewClinic from "./pages/NewClinic";
-import ClinicDetails from "./pages/ClinicDetails";
-import Patients from "./pages/Patients";
-import AddPatient from "./pages/AddPatient";
-import PatientDetails from "./pages/PatientDetails";
-import Procedures from "./pages/Procedures";
-import ProcedureDetails from "./pages/ProcedureDetails";
-import AddProcedure from "./pages/AddProcedure";
-import EditProcedure from "./pages/EditProcedure";
+import Clinics from "./pages/clinics/Clinics";
+import NewClinic from "./pages/clinics/NewClinic";
+import ClinicDetails from "./pages/clinics/ClinicDetails";
+import Patients from "./pages/patients/Patients";
+import AddPatient from "./pages/patients/AddPatient";
+import PatientDetails from "./pages/patients/PatientDetails";
+import Procedures from "./pages/procedures/Procedures";
+import ProcedureDetails from "./pages/procedures/ProcedureDetails";
+import AddProcedure from "./pages/procedures/AddProcedure";
+import EditProcedure from "./pages/procedures/EditProcedure";
 import PrimaryTeethChart from "./components/patients/PrimaryTeethChart";
 import PermanentTeethChart from "./components/patients/PermanentTeethChart";
-import Appointments from "./pages/Appointments";
-import NewAppointment from "./pages/NewAppointment";
+import Appointments from "./pages/appointments/Appointments";
+import NewAppointment from "./pages/appointments/NewAppointment";
 import AppointmentDetails from "./pages/appointments/AppointmentDetails";
-import TreatmentHistory from "./pages/TreatmentHistory";
-import TreatmentDetails from "./pages/TreatmentDetails";
+import TreatmentHistory from "./pages/treatments/TreatmentHistory";
+import TreatmentDetails from "./pages/treatments/TreatmentDetails";
 import "./App.css";
 
 function App() {

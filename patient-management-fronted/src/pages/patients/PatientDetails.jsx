@@ -1,10 +1,10 @@
 import { ArrowLeft, Pencil } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import AppointmentHistoryCard from "../components/patients/TreatmentHistoryCard";
-import PersonalInfoCard from "../components/patients/PersonalInfoCard";
-import ContactInfoCard from "../components/patients/ContactInfoCard";
-import MedicalHistoryCard from "../components/patients/MedicalHistoryCard";
-import DentalChartsCard from "../components/patients/DentalChartsCard";
+import AppointmentHistoryCard from "../../components/patients/TreatmentHistoryCard";
+import PersonalInfoCard from "../../components/patients/PersonalInfoCard";
+import ContactInfoCard from "../../components/patients/ContactInfoCard";
+import MedicalHistoryCard from "../../components/patients/MedicalHistoryCard";
+import DentalChartsCard from "../../components/patients/DentalChartsCard";
 
 const patients = [
   {

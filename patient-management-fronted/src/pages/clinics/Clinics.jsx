@@ -1,5 +1,5 @@
-import PageHeader from "../components/ui/PageHeader";
-import ClinicCard from "../components/clinics/ClinicCard";
+import PageHeader from "../../components/ui/PageHeader";
+import ClinicCard from "../../components/clinics/ClinicCard";
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 

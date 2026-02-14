@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PageHeader from "../components/ui/PageHeader";
-import Card from "../components/ui/Card";
+import PageHeader from "../../components/ui/PageHeader";
+import Card from "../../components/ui/Card";
 import { ArrowLeft } from "lucide-react";
 
 export default function AddProcedure() {

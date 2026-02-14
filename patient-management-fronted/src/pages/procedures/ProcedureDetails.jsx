@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import PageHeader from "../components/ui/PageHeader";
-import Card from "../components/ui/Card";
+import PageHeader from "../../components/ui/PageHeader";
+import Card from "../../components/ui/Card";
 import { ArrowLeft, Pencil, Stethoscope, CalendarClock  } from "lucide-react";
 
 const mockProcedure = {
