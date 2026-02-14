@@ -7,6 +7,7 @@ import {
   Stethoscope,
   Calendar,
   BarChart3,
+  ClipboardCheck
 } from "lucide-react";
 
 const menu = [
@@ -17,6 +18,7 @@ const menu = [
   { label: "Procedures", icon: Stethoscope, path: "/procedures" },
   { label: "Appointments", icon: Calendar, path: "/appointments" },
   { label: "Reports", icon: BarChart3, path: "/reports" },
+  { label: "Treatment History", icon: ClipboardCheck, path: "/treatment-history" },
 ];
 
 export default function Sidebar() {
