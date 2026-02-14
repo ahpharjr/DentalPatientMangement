@@ -7,7 +7,7 @@ const patients = [
   {
     id: "1",
     name: "Dela Cruz, Juan M.",
-    dob: "Jul 5, 1986",
+    age: "38",
     gender: "Male",
     email: "—",
     status: "Married",
@@ -16,7 +16,7 @@ const patients = [
     {
     id: "2",
     name: "Dela Cruz, Juan M.",
-    dob: "Jul 5, 1986",
+    age: "42",
     gender: "Male",
     email: "—",
     status: "Married",
@@ -25,7 +25,7 @@ const patients = [
     {
     id: "3",
     name: "Dela Cruz, Juan M.",
-    dob: "Jul 5, 1986",
+    age: "50",
     gender: "Male",
     email: "—",
     status: "Married",
@@ -34,7 +34,7 @@ const patients = [
     {
     id: "4",
     name: "Dela Cruz, Juan M.",
-    dob: "Jul 5, 1986",
+    age: "38",
     gender: "Male",
     email: "—",
     status: "Married",
@@ -81,11 +81,10 @@ export default function Patients() {
           <thead className="bg-zinc-900 text-zinc-400">
             <tr>
               <th className="px-4 py-3 text-left">Name</th>
-              <th className="px-4 py-3">DOB</th>
-              <th className="px-4 py-3">Gender</th>
-              <th className="px-4 py-3">Email</th>
-              <th className="px-4 py-3">Status</th>
-              <th className="px-4 py-3">Clinic</th>
+              <th className="px-4 py-3 text-left">Age</th>
+              <th className="px-4 py-3 text-left">Gender</th>
+              <th className="px-4 py-3 text-left">Contact</th>
+              <th className="px-4 py-3 text-left">Clinic</th>
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -97,10 +96,9 @@ export default function Patients() {
                 className="border-t border-white/10 hover:bg-zinc-900/50"
               >
                 <td className="px-4 py-3 text-white">{p.name}</td>
-                <td className="px-4 py-3">{p.dob}</td>
+                <td className="px-4 py-3">{p.age}</td>
                 <td className="px-4 py-3">{p.gender}</td>
                 <td className="px-4 py-3">{p.email}</td>
-                <td className="px-4 py-3">{p.status}</td>
                 <td className="px-4 py-3">{p.clinic}</td>
 
                 <td className="px-4 py-3 text-right">
