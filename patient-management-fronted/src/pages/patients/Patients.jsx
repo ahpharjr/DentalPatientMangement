@@ -49,7 +49,7 @@ export default function Patients() {
     <div className="space-y-6">
       <PageHeader
         title="Patients"
-        subtitle="Manage your dental patients and their records"
+        subtitle="Manage your patients and their records"
         action={
           <button
             onClick={() => navigate("/patients/new")}

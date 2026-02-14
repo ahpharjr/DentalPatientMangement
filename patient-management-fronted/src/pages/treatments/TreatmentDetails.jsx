@@ -1,4 +1,4 @@
-import { ArrowLeft, Pencil, Printer, Trash2, ChevronDown } from "lucide-react";
+import { ArrowLeft,Printer, Trash2} from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import MedicalHistoryCard from "../../components/patients/MedicalHistoryCard";
