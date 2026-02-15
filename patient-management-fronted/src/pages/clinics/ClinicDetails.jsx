@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, MapPin, Phone, Mail, Building2 } from "lucide-react";
-import Card from "../components/ui/Card";
-import ClinicStatusBadge from "../components/clinics/ClinicStatusBadge";
+import Card from "../../components/ui/Card";
+import ClinicStatusBadge from "../../components/clinics/ClinicStatusBadge";
 
 const clinics = [
   {

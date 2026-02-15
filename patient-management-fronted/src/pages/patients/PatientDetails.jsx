@@ -1,10 +1,10 @@
 import { ArrowLeft, Pencil } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import AppointmentHistoryCard from "../components/patients/AppointmentHistoryCard";
-import PersonalInfoCard from "../components/patients/PersonalInfoCard";
-import ContactInfoCard from "../components/patients/ContactInfoCard";
-import MedicalHistoryCard from "../components/patients/MedicalHistoryCard";
-import DentalChartsCard from "../components/patients/DentalChartsCard";
+import TreatmentHistoryCard from "../../components/patients/TreatmentHistoryCard";
+import PersonalInfoCard from "../../components/patients/PersonalInfoCard";
+import ContactInfoCard from "../../components/patients/ContactInfoCard";
+import MedicalHistoryCard from "../../components/patients/MedicalHistoryCard";
+import DentalChartsCard from "../../components/patients/DentalChartsCard";
 
 const patients = [
   {
@@ -54,18 +54,16 @@ export default function PatientDetails() {
         </button>
       </div>
 
-      {/* Appointment History */}
-      <AppointmentHistoryCard />
-
       {/* Info Sections */}
       <div className="grid gap-6 md:grid-cols-2">
         <PersonalInfoCard patient={patient} />
         <ContactInfoCard patient={patient} />
       </div>
 
-      <MedicalHistoryCard />
-
       <DentalChartsCard />
+
+      <MedicalHistoryCard />
+      <TreatmentHistoryCard />
     </div>
   );
 }

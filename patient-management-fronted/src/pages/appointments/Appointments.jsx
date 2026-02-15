@@ -1,7 +1,7 @@
 import { Plus, Search, RotateCcw, Calendar } from "lucide-react";
 import { useState } from "react";
-import PageHeader from "../components/ui/PageHeader";
-import { AppointmentActions } from "../components/ui/AppointmentActions";
+import PageHeader from "../../components/ui/PageHeader";
+import { AppointmentActions } from "../../components/ui/AppointmentActions";
 import { useNavigate } from "react-router-dom";
 
 const filters = [

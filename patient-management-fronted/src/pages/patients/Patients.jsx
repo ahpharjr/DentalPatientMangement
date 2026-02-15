@@ -1,41 +1,62 @@
-import PageHeader from "../components/ui/PageHeader";
-import RowActions from "../components/ui/RowActions";
+import PageHeader from "../../components/ui/PageHeader";
+import RowActions from "../../components/ui/RowActions";
 import { Plus, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const procedures = [
+const patients = [
   {
     id: "1",
-    name: "Dental cleaning",
-    description: "This is a dental cleaning basic",
+    name: "Dela Cruz, Juan M.",
+    age: "38",
+    gender: "Male",
+    email: "—",
+    status: "Married",
+    clinic: "Clinic 1",
   },
     {
     id: "2",
-    name: "Dental cleaning",
-    description: "This is a dental cleaning basic",
+    name: "Dela Cruz, Juan M.",
+    age: "42",
+    gender: "Male",
+    email: "—",
+    status: "Married",
+    clinic: "Clinic 1",
   },
     {
     id: "3",
-    name: "Dental cleaning",
-    description: "This is a dental cleaning basic",
+    name: "Dela Cruz, Juan M.",
+    age: "50",
+    gender: "Male",
+    email: "—",
+    status: "Married",
+    clinic: "Clinic 1",
+  },
+    {
+    id: "4",
+    name: "Dela Cruz, Juan M.",
+    age: "38",
+    gender: "Male",
+    email: "—",
+    status: "Married",
+    clinic: "Clinic 1",
   },
 ];
 
-export default function Procedures() {
+export default function Patients() {
   const navigate = useNavigate();
 
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Procedures"
-        subtitle="Manage your dental procedures and treatments"
+        title="Patients"
+        subtitle="Manage your patients and their records"
         action={
           <button
-            onClick={() => navigate("/procedures/new")}
+            onClick={() => navigate("/patients/new")}
             className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800"
           >
             <Plus className="h-4 w-4" />
-            Add Procedure
+            Add Patient
           </button>
         }
       />
@@ -45,11 +66,10 @@ export default function Procedures() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
           <input
-            placeholder="Search procedures by name or description..."
+            placeholder="Search patients by name..."
             className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
           />
         </div>
-
         <button className="rounded-lg bg-zinc-800 px-4 text-sm text-white hover:bg-zinc-700">
           Search
         </button>
@@ -61,48 +81,37 @@ export default function Procedures() {
           <thead className="bg-zinc-900 text-zinc-400">
             <tr>
               <th className="px-4 py-3 text-left">Name</th>
-              <th className="px-4 py-3 text-left">Description</th>
+              <th className="px-4 py-3 text-left">Age</th>
+              <th className="px-4 py-3 text-left">Gender</th>
+              <th className="px-4 py-3 text-left">Contact</th>
+              <th className="px-4 py-3 text-left">Clinic</th>
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
 
           <tbody>
-            {procedures.map((procedure) => (
+            {patients.map((p) => (
               <tr
-                key={procedure.id}
+                key={p.id}
                 className="border-t border-white/10 hover:bg-zinc-900/50"
               >
-                <td className="px-4 py-3 text-white">
-                  {procedure.name}
-                </td>
-
-                <td className="px-4 py-3 text-zinc-300">
-                  {procedure.description}
-                </td>
+                <td className="px-4 py-3 text-white">{p.name}</td>
+                <td className="px-4 py-3">{p.age}</td>
+                <td className="px-4 py-3">{p.gender}</td>
+                <td className="px-4 py-3">{p.email}</td>
+                <td className="px-4 py-3">{p.clinic}</td>
 
                 <td className="px-4 py-3 text-right">
                   <RowActions
-                    onView={() =>
-                      navigate(`/procedures/${procedure.id}`)
-                    }
-                    onEdit={() =>
-                      navigate(`/procedures/${procedure.id}/edit`)
-                    }
-                    onDelete={() =>
-                      alert("Delete procedure")
-                    }
+                    onView={() => navigate(`/patients/${p.id}`)}
+                    onEdit={() => navigate(`/patients/${p.id}/edit`)}
+                    onDelete={() => alert("Delete patient")}
                   />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-
-        {procedures.length === 0 && (
-          <div className="p-6 text-center text-sm text-zinc-500">
-            No procedures found
-          </div>
-        )}
       </div>
     </div>
   );

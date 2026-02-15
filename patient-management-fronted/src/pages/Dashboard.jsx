@@ -8,7 +8,7 @@ import {
   Clock,
   Search,
   UserPlus,
-  CalendarSearch,
+  Activity,
   CalendarPlus,
 } from "lucide-react";
 
@@ -18,20 +18,20 @@ export default function Dashboard() {
       <div>
         <h1 className="text-2xl font-bold text-white">Dashboard</h1>
         <p className="text-zinc-400">
-          Welcome to your Dentistly dashboard
+          Welcome back to Mong Yang Clinic! Here's a quick overview of your clinic's performance and activities.
         </p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <StatCard
-          title="Today's Appointments"
+          title="Today's Treatments"
           value="0"
           subtitle="+0 from yesterday"
           icon={Calendar}
         />
         <StatCard
-          title="Active Patients"
+          title="Total Patients"
           value="192"
           subtitle="+0 new this week"
           icon={Users}
@@ -39,7 +39,7 @@ export default function Dashboard() {
         <StatCard
           title="Today's Revenue"
           value="₱0.00"
-          subtitle="No change from last week"
+          subtitle="+0 from yesterday"
           icon={DollarSign}
         />
         <StatCard
@@ -64,13 +64,13 @@ export default function Dashboard() {
           />
           <QuickActionCard
             title="Add New Patient"
-            description="Create patient record"
+            description="Create new patient"
             icon={UserPlus}
           />
           <QuickActionCard
-            title="Search Appointment"
-            description="Find appointments"
-            icon={CalendarSearch}
+            title="Add New Treatment"
+            description="Create new treatment"
+            icon={Activity}
           />
           <QuickActionCard
             title="Add New Appointment"

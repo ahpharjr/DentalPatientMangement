@@ -1,6 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import PatientForm from "../components/patients/PatientForm";
+import PatientForm from "../../components/patients/PatientForm";
 
 export default function AddPatient() {
   return (

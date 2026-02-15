@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import PageHeader from "../components/ui/PageHeader";
-import Card from "../components/ui/Card";
+import PageHeader from "../../components/ui/PageHeader";
+import Card from "../../components/ui/Card";
 import { ArrowLeft } from "lucide-react";
 
 // same mock data as details page
