@@ -23,6 +23,7 @@ import TreatmentDetails from "./pages/treatments/TreatmentDetails";
 import NewTreatment from "./pages/treatments/NewTreatment";
 import MemberDetails from "./pages/members/MemberDetails";
 import Members from "./pages/members/Members";
+import Profile from "./pages/profiles";
 import "./App.css";
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Route path="/treatments/new" element={<NewTreatment />} />
           <Route path="/members" element={<Members />} />
           <Route path="/members/:id" element={<MemberDetails />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>

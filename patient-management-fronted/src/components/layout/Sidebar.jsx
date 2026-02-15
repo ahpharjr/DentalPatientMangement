@@ -53,7 +53,7 @@ export default function Sidebar({ open, toggleSidebar }) {
         {/* Toggle */}
         <button
           onClick={toggleSidebar}
-          className="p-2 rounded-lg hover:bg-zinc-800 transition"
+          className="p-2 rounded-lg hover:bg-zinc-800 transition cursor-pointer"
         >
           {open ? (
             <PanelLeftClose className="h-5 w-5 text-zinc-400" />
@@ -84,7 +84,7 @@ export default function Sidebar({ open, toggleSidebar }) {
             {/* Active Left Indicator */}
             <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-r-full bg-blue-500 opacity-0 group-[.active]:opacity-100"></span>
 
-            <item.icon className="h-5 w-5 flex-shrink-0" />
+            <item.icon className="h-5 w-5 shrink-0" />
 
             {open && <span>{item.label}</span>}
           </NavLink>

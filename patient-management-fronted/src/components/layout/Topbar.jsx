@@ -1,7 +1,10 @@
 import { Sun, Moon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Badge from "../ui/Badge";
 
 export default function Topbar({ darkMode, toggleDarkMode }) {
+  const navigate = useNavigate();
+
   return (
     <header className="flex items-center justify-between px-6 py-4 
                        backdrop-blur-xl bg-white/70 dark:bg-zinc-900/70 
@@ -24,10 +27,9 @@ export default function Topbar({ darkMode, toggleDarkMode }) {
       {/* Right */}
       <div className="flex items-center gap-4">
 
-        {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800 transition"
+          className="p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800 transition cursor-pointer"
         >
           {darkMode ? (
             <Sun className="h-5 w-5 text-yellow-400" />
@@ -36,12 +38,17 @@ export default function Topbar({ darkMode, toggleDarkMode }) {
           )}
         </button>
 
-        {/* Profile */}
-        <img
-          src="/ahphar.png"
-          alt="Profile"
-          className="h-9 w-9 rounded-full object-cover border border-zinc-300 dark:border-white/10"
-        />
+        {/* Clickable Profile */}
+        <button
+          onClick={() => navigate("/profile")}
+          className="rounded-full focus:outline-none cursor-pointer"
+        >
+          <img
+            src="/ahphar.png"
+            alt="Profile"
+            className="h-9 w-9 rounded-full object-cover border border-zinc-300 dark:border-white/10 hover:scale-105 transition"
+          />
+        </button>
       </div>
     </header>
   );
