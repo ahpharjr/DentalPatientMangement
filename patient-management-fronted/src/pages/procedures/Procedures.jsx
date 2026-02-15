@@ -25,7 +25,7 @@ export default function Procedures() {
   const navigate = useNavigate();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <PageHeader
         title="Procedures"
         subtitle="Manage your dental procedures and treatments"

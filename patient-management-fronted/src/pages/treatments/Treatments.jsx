@@ -53,7 +53,7 @@ export default function Treatments() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <PageHeader
         title="Treatments"
         subtitle="Manage patient treatments and walk-in records"

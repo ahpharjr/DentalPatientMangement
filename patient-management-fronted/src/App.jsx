@@ -24,6 +24,7 @@ import NewTreatment from "./pages/treatments/NewTreatment";
 import MemberDetails from "./pages/members/MemberDetails";
 import Members from "./pages/members/Members";
 import Profile from "./pages/profiles";
+import Reports from "./pages/Reports";
 import "./App.css";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
           <Route path="/members" element={<Members />} />
           <Route path="/members/:id" element={<MemberDetails />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/reports" element={<Reports />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>
