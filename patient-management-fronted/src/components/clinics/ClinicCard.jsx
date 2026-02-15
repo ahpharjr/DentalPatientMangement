@@ -1,4 +1,4 @@
-import { MapPin, Phone, MoreVertical, Building2 } from "lucide-react";
+import { MapPin, Phone, Building2 } from "lucide-react";
 import Card from "../ui/Card";
 import ClinicStatusBadge from "./ClinicStatusBadge";
 import { useNavigate } from "react-router-dom";
