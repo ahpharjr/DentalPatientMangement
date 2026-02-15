@@ -1,5 +1,6 @@
 import StatCard from "../components/dashboard/StatCard";
 import QuickActionCard from "../components/dashboard/QuickActionCard";
+import { useNavigate } from "react-router-dom";
 
 import {
   Calendar,
@@ -13,6 +14,8 @@ import {
 } from "lucide-react";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-8">
       <div>
@@ -29,24 +32,31 @@ export default function Dashboard() {
           value="0"
           subtitle="+0 from yesterday"
           icon={Calendar}
+          onClick={() => navigate("/treatments?filter=today")}
         />
+
         <StatCard
           title="Total Patients"
           value="192"
           subtitle="+0 new this week"
           icon={Users}
+          onClick={() => navigate("/patients")}
         />
+
         <StatCard
           title="Today's Revenue"
           value="₱0.00"
           subtitle="+0 from yesterday"
           icon={DollarSign}
+          onClick={() => navigate("/reports")}
         />
+
         <StatCard
           title="Upcoming Appointments"
           value="0"
-          subtitle="Next 48 hours"
+          subtitle="Next 3 days"
           icon={Clock}
+          onClick={() => navigate("/appointments?filter=next3")}
         />
       </div>
 
@@ -61,21 +71,32 @@ export default function Dashboard() {
             title="Search Patient"
             description="Find existing patients"
             icon={Search}
+            onClick={() => {
+              console.log("clicked");
+              navigate("/patients");
+            }}
+
           />
+
           <QuickActionCard
             title="Add New Patient"
             description="Create new patient"
             icon={UserPlus}
+            onClick={() => navigate("/patients/new")}
           />
+
           <QuickActionCard
             title="Add New Treatment"
             description="Create new treatment"
             icon={Activity}
+            onClick={() => navigate("/treatments/new")}
           />
+
           <QuickActionCard
             title="Add New Appointment"
             description="Schedule new appointment"
             icon={CalendarPlus}
+            onClick={() => navigate("/appointments/new")}
           />
         </div>
       </div>

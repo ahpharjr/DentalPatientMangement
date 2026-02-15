@@ -2,6 +2,7 @@ import { Plus, Search, RotateCcw, Activity } from "lucide-react";
 import { useState } from "react";
 import PageHeader from "../../components/ui/PageHeader";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const filters = [
   { key: "ongoing", label: "Ongoing" },
@@ -29,9 +30,13 @@ const treatmentsData = [
 ];
 
 export default function Treatments() {
-  const [activeFilter, setActiveFilter] = useState("ongoing");
+  // const [activeFilter, setActiveFilter] = useState("ongoing");
   const [treatments] = useState(treatmentsData);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const initialFilter = searchParams.get("filter") || "ongoing";
+  const [activeFilter, setActiveFilter] = useState(initialFilter);
+
 
   const formatDate = (date) =>
     new Date(date).toLocaleString("en-US", {
@@ -81,9 +86,9 @@ export default function Treatments() {
           ))}
         </div>
 
-          <p className="text-sm text-zinc-400 mr-4">
-            Total Treatments: <span className="font-semibold text-white">{treatments.length}</span>
-          </p>
+        <p className="text-sm text-zinc-400 mr-4">
+          Total Treatments: <span className="font-semibold text-white">{treatments.length}</span>
+        </p>
       </div>
 
       {/* Table */}

@@ -5,6 +5,7 @@ export default function StatCard({
   value,
   subtitle,
   icon: Icon,
+  onClick,
 }) {
   return (
     <Card>
@@ -12,7 +13,12 @@ export default function StatCard({
         <p className="text-sm text-zinc-400">{title}</p>
 
         {Icon && (
-          <Icon className="h-5 w-5 text-zinc-500" />
+          <button
+            onClick={onClick}
+            className="p-2 rounded-lg hover:bg-zinc-800 transition cursor-pointer"
+          >
+            <Icon className="h-5 w-5 text-zinc-500 hover:text-blue-400 transition" />
+          </button>
         )}
       </div>
 

@@ -2,7 +2,7 @@ import { Plus, Search, RotateCcw, Calendar } from "lucide-react";
 import { useState } from "react";
 import PageHeader from "../../components/ui/PageHeader";
 import { AppointmentActions } from "../../components/ui/AppointmentActions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const filters = [
   { key: "scheduled", label: "Scheduled" },
@@ -33,8 +33,16 @@ const appointmentsData = [
 ];
 
 export default function Appointments() {
-  const [activeFilter, setActiveFilter] = useState("scheduled");
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const filterFromURL = searchParams.get("filter");
+
+  const isValidFilter = filters.some((f) => f.key === filterFromURL);
+
+  const [activeFilter, setActiveFilter] = useState(
+    isValidFilter ? filterFromURL : "scheduled"
+  );
 
   const formatDateTime = (date) => {
     return new Date(date).toLocaleString("en-US", {
@@ -77,7 +85,8 @@ export default function Appointments() {
         action={
           <button
             onClick={() => navigate("/appointments/new")}
-            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800">
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800"
+          >
             <Plus className="h-4 w-4" />
             Add Appointment
           </button>
@@ -85,16 +94,20 @@ export default function Appointments() {
       />
 
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2 ">
+      <div className="flex flex-wrap items-center gap-2">
         <div className="flex rounded-lg border border-white/10 bg-zinc-900 p-1">
           {filters.map((f) => (
             <button
               key={f.key}
-              onClick={() => setActiveFilter(f.key)}
+              onClick={() => {
+                setActiveFilter(f.key);
+                setSearchParams({ filter: f.key });
+              }}
               className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition
-                ${activeFilter === f.key
-                  ? "bg-zinc-800 text-white"
-                  : "text-zinc-400 hover:text-white"
+                ${
+                  activeFilter === f.key
+                    ? "bg-zinc-800 text-white"
+                    : "text-zinc-400 hover:text-white"
                 }`}
             >
               <Calendar className="h-4 w-4" />
@@ -104,8 +117,8 @@ export default function Appointments() {
         </div>
       </div>
 
+      {/* Search + Actions */}
       <div className="flex items-center justify-between">
-        {/* Search + Actions */}
         <div className="flex flex-wrap items-center gap-2 max-w-md w-full">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
@@ -124,22 +137,29 @@ export default function Appointments() {
             Refresh
           </button>
         </div>
+
         <p className="text-sm text-zinc-400 mr-4">
-          Total Appointments: <span className="font-semibold text-white">{appointments.length}</span>
+          Total Appointments:{" "}
+          <span className="font-semibold text-white">
+            {appointments.length}
+          </span>
         </p>
       </div>
 
-
+      {/* Table */}
       <div className="rounded-lg border border-white/10 bg-zinc-900">
         {filteredAppointments.length === 0 ? (
           <div className="flex min-h-55 flex-col items-center justify-center gap-4 text-center">
             <h3 className="text-lg font-medium text-white">
-              No Scheduled Appointments
+              No Appointments Found
             </h3>
             <p className="text-sm text-zinc-400">
-              You don't have any upcoming appointments scheduled.
+              There are no appointments under this filter.
             </p>
-            <button className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200">
+            <button
+              onClick={() => navigate("/appointments/new")}
+              className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200"
+            >
               Schedule an Appointment
             </button>
           </div>
@@ -176,9 +196,10 @@ export default function Appointments() {
                   <td className="px-4 py-3">
                     <span
                       className={`rounded-full px-2 py-1 text-xs font-medium
-                  ${appt.paymentStatus === "paid"
-                          ? "bg-green-500/10 text-green-400"
-                          : "bg-red-500/10 text-red-400"
+                        ${
+                          appt.paymentStatus === "paid"
+                            ? "bg-green-500/10 text-green-400"
+                            : "bg-red-500/10 text-red-400"
                         }`}
                     >
                       {appt.paymentStatus === "paid" ? "Paid" : "Unpaid"}
