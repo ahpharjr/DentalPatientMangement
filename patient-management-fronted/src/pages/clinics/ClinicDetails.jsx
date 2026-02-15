@@ -54,7 +54,7 @@ export default function ClinicDetails() {
       {/* Back */}
       <button
         onClick={() => navigate("/clinics")}
-        className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white"
+        className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white cursor-pointer"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to Clinics
@@ -81,7 +81,7 @@ export default function ClinicDetails() {
           {/* Edit */}
           <button
             onClick={() => navigate(`/clinics/${id}/edit`)}
-            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-800 px-4 py-2 text-sm text-white hover:bg-zinc-700"
+            className="flex items-center gap-2 rounded-lg border cursor-pointer border-white/10 bg-zinc-800 px-4 py-2 text-sm text-white hover:bg-zinc-700"
           >
             <Pencil className="h-4 w-4" />
             Edit
@@ -90,7 +90,7 @@ export default function ClinicDetails() {
           {/* Delete */}
           <button
             onClick={handleDelete}
-            className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400 hover:bg-red-500/20 hover:border-red-500"
+            className="flex items-center gap-2 rounded-lg border cursor-pointer border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400 hover:bg-red-500/20 hover:border-red-500"
           >
             <Trash2 className="h-4 w-4" />
             Delete

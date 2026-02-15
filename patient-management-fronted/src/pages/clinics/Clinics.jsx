@@ -48,7 +48,7 @@ export default function Clinics() {
         action={
           <button
             onClick={() => navigate("/clinics/new")}
-            className="flex items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-white hover:bg-zinc-700"
+            className="flex items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-white hover:bg-zinc-700 cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             Add Clinic

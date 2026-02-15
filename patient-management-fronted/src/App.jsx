@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Clinics from "./pages/clinics/Clinics";
 import NewClinic from "./pages/clinics/NewClinic";
 import ClinicDetails from "./pages/clinics/ClinicDetails";
+import EditClinic from "./pages/clinics/EditClinci";
 import Patients from "./pages/patients/Patients";
 import AddPatient from "./pages/patients/AddPatient";
 import PatientDetails from "./pages/patients/PatientDetails";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/clinics" element={<Clinics />} />
           <Route path="/clinics/new" element={<NewClinic />} />
           <Route path="/clinics/:id" element={<ClinicDetails />} />
+          <Route path="/clinics/:id/edit" element={<EditClinic />} />
           <Route path="/patients" element={<Patients />} />
           <Route path="/patients/new" element={<AddPatient />} />
           <Route path="/patients/:id" element={<PatientDetails />} />
