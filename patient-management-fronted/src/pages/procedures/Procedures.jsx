@@ -9,12 +9,12 @@ const procedures = [
     name: "Dental cleaning",
     description: "This is a dental cleaning basic",
   },
-    {
+  {
     id: "2",
     name: "Dental cleaning",
     description: "This is a dental cleaning basic",
   },
-    {
+  {
     id: "3",
     name: "Dental cleaning",
     description: "This is a dental cleaning basic",
@@ -40,20 +40,28 @@ export default function Procedures() {
         }
       />
 
-      {/* Search */}
-      <div className="flex gap-2">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
-          <input
-            placeholder="Search procedures by name or description..."
-            className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
-          />
+      <div className="flex items-center justify-between">
+        {/* Search */}
+        <div className="flex gap-2 max-w-sm w-full">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
+            <input
+              placeholder="Search procedures by name or description..."
+              className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
+            />
+          </div>
+
+          <button className="rounded-lg bg-zinc-800 px-4 text-sm text-white hover:bg-zinc-700">
+            Search
+          </button>
         </div>
 
-        <button className="rounded-lg bg-zinc-800 px-4 text-sm text-white hover:bg-zinc-700">
-          Search
-        </button>
+        <p className="text-sm text-zinc-400 mr-4">
+          Total Procedures: <span className="font-semibold text-white">{procedures.length}</span>
+        </p>
       </div>
+
+
 
       {/* Table */}
       <div className="overflow-hidden rounded-lg border border-white/10">

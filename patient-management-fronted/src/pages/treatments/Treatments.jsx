@@ -63,22 +63,27 @@ export default function Treatments() {
         }
       />
 
-      {/* Filters */}
-      <div className="flex gap-2">
-        {filters.map((f) => (
-          <button
-            key={f.key}
-            onClick={() => setActiveFilter(f.key)}
-            className={`rounded-lg px-3 py-1.5 text-sm transition
-              ${
-                activeFilter === f.key
+      <div className="flex justify-between items-center">
+        {/* Filters */}
+        <div className="flex gap-2">
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setActiveFilter(f.key)}
+              className={`rounded-lg px-3 py-1.5 text-sm transition
+              ${activeFilter === f.key
                   ? "bg-zinc-800 text-white"
                   : "text-zinc-400 hover:text-white"
-              }`}
-          >
-            {f.label}
-          </button>
-        ))}
+                }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+          <p className="text-sm text-zinc-400 mr-4">
+            Total Treatments: <span className="font-semibold text-white">{treatments.length}</span>
+          </p>
       </div>
 
       {/* Table */}
@@ -118,10 +123,9 @@ export default function Treatments() {
                   <td className="px-4 py-3">
                     <span
                       className={`rounded-full px-2 py-1 text-xs font-medium
-                        ${
-                          t.paymentStatus === "paid"
-                            ? "bg-green-500/10 text-green-400"
-                            : "bg-red-500/10 text-red-400"
+                        ${t.paymentStatus === "paid"
+                          ? "bg-green-500/10 text-green-400"
+                          : "bg-red-500/10 text-red-400"
                         }`}
                     >
                       {t.paymentStatus === "paid" ? "Paid" : "Unpaid"}

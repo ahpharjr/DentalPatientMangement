@@ -49,15 +49,20 @@ export default function Members() {
           </button>
         }
       />
-
+      <div className="flex justify-between items-center">
       {/* Search Bar */}
-      <div className="relative max-w-md">
+      <div className="relative max-w-sm w-full">
         <Search className="absolute left-3 top-3 h-4 w-4 text-zinc-500" />
         <input
           placeholder="Search members..."
           className="w-full rounded-xl border border-white/10 bg-zinc-900 py-2.5 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
         />
       </div>
+
+      <p className="text-sm text-zinc-400 mr-4">
+        Total Members: <span className="font-semibold text-white">{members.length}</span>
+      </p>
+</div>
 
       {/* Modern Table Card */}
       <div className="rounded-2xl border border-white/10 bg-zinc-950 shadow-xl overflow-hidden">

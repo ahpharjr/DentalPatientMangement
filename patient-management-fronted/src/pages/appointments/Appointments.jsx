@@ -69,7 +69,7 @@ export default function Appointments() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <PageHeader
         title="Appointments"
@@ -85,7 +85,7 @@ export default function Appointments() {
       />
 
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2 ">
         <div className="flex rounded-lg border border-white/10 bg-zinc-900 p-1">
           {filters.map((f) => (
             <button
@@ -104,25 +104,31 @@ export default function Appointments() {
         </div>
       </div>
 
-      {/* Search + Actions */}
-      <div className="flex flex-wrap items-center gap-2">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
-          <input
-            placeholder="Search appointments by patient or procedure..."
-            className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
-          />
+      <div className="flex items-center justify-between">
+        {/* Search + Actions */}
+        <div className="flex flex-wrap items-center gap-2 max-w-md w-full">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
+            <input
+              placeholder="Search appointments by patient or procedure..."
+              className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
+            />
+          </div>
+
+          <button className="rounded-lg bg-zinc-800 px-4 py-2 text-sm text-white hover:bg-zinc-700">
+            Search
+          </button>
+
+          <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white hover:bg-zinc-800">
+            <RotateCcw className="h-4 w-4" />
+            Refresh
+          </button>
         </div>
-
-        <button className="rounded-lg bg-zinc-800 px-4 py-2 text-sm text-white hover:bg-zinc-700">
-          Search
-        </button>
-
-        <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white hover:bg-zinc-800">
-          <RotateCcw className="h-4 w-4" />
-          Refresh
-        </button>
+        <p className="text-sm text-zinc-400 mr-4">
+          Total Appointments: <span className="font-semibold text-white">{appointments.length}</span>
+        </p>
       </div>
+
 
       <div className="rounded-lg border border-white/10 bg-zinc-900">
         {filteredAppointments.length === 0 ? (
