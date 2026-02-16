@@ -1,5 +1,5 @@
 import { ArrowLeft, Activity, Trash2 } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const PRIMARY_TOOTH_NAMES = {
@@ -40,12 +40,11 @@ const CONDITION_STYLES = {
 
 const upperRight = ["A", "B", "C", "D", "E"];
 const upperLeft = ["F", "G", "H", "I", "J"];
-const lowerRight = ["K", "L", "M", "N", "O"];
-const lowerLeft = ["P", "Q", "R", "S", "T"];
+const lowerLeft = ["O", "N", "M", "L", "K"];
+const lowerRight = ["T", "S", "R", "Q", "P"];
 
 export default function PrimaryTeethChart() {
   const navigate = useNavigate();
-  const { id } = useParams();
 
   const [selectedTooth, setSelectedTooth] = useState(null);
   const [showAddMarking, setShowAddMarking] = useState(false);

@@ -3,45 +3,6 @@ import RowActions from "../../components/ui/RowActions";
 import { Plus, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const patients = [
-  {
-    id: "1",
-    name: "Dela Cruz, Juan M.",
-    age: "38",
-    gender: "Male",
-    email: "—",
-    status: "Married",
-    clinic: "Clinic 1",
-  },
-  {
-    id: "2",
-    name: "Dela Cruz, Juan M.",
-    age: "42",
-    gender: "Male",
-    email: "—",
-    status: "Married",
-    clinic: "Clinic 1",
-  },
-  {
-    id: "3",
-    name: "Dela Cruz, Juan M.",
-    age: "50",
-    gender: "Male",
-    email: "—",
-    status: "Married",
-    clinic: "Clinic 1",
-  },
-  {
-    id: "4",
-    name: "Dela Cruz, Juan M.",
-    age: "38",
-    gender: "Male",
-    email: "—",
-    status: "Married",
-    clinic: "Clinic 1",
-  },
-];
-
 export default function Patients() {
   const navigate = useNavigate();
 
@@ -121,3 +82,96 @@ export default function Patients() {
     </div>
   );
 }
+
+const patients = [
+  {
+    id: "1",
+    name: "Santos, Maria L.",
+    age: "34",
+    gender: "Female",
+    email: "maria.santos@email.com",
+    status: "Married",
+    clinic: "Downtown Dental Clinic",
+  },
+  {
+    id: "2",
+    name: "Reyes, Carlo P.",
+    age: "41",
+    gender: "Male",
+    email: "carlo.reyes@email.com",
+    status: "Married",
+    clinic: "Smile Care Center",
+  },
+  {
+    id: "3",
+    name: "Garcia, Angela M.",
+    age: "29",
+    gender: "Female",
+    email: "angela.garcia@email.com",
+    status: "Single",
+    clinic: "Downtown Dental Clinic",
+  },
+  {
+    id: "4",
+    name: "Torres, Michael A.",
+    age: "52",
+    gender: "Male",
+    email: "michael.torres@email.com",
+    status: "Married",
+    clinic: "Prime Dental Studio",
+  },
+  {
+    id: "5",
+    name: "Villanueva, Sophia R.",
+    age: "23",
+    gender: "Female",
+    email: "sophia.v@email.com",
+    status: "Single",
+    clinic: "Smile Care Center",
+  },
+  {
+    id: "6",
+    name: "Lim, Daniel K.",
+    age: "37",
+    gender: "Male",
+    email: "daniel.lim@email.com",
+    status: "Married",
+    clinic: "BrightSmile Clinic",
+  },
+  {
+    id: "7",
+    name: "Chua, Isabella T.",
+    age: "46",
+    gender: "Female",
+    email: "isabella.chua@email.com",
+    status: "Married",
+    clinic: "Prime Dental Studio",
+  },
+  {
+    id: "8",
+    name: "Tan, Joshua C.",
+    age: "31",
+    gender: "Male",
+    email: "joshua.tan@email.com",
+    status: "Single",
+    clinic: "BrightSmile Clinic",
+  },
+  {
+    id: "9",
+    name: "Lopez, Camille D.",
+    age: "27",
+    gender: "Female",
+    email: "camille.lopez@email.com",
+    status: "Single",
+    clinic: "Downtown Dental Clinic",
+  },
+  {
+    id: "10",
+    name: "Fernandez, Mark J.",
+    age: "58",
+    gender: "Male",
+    email: "mark.fernandez@email.com",
+    status: "Married",
+    clinic: "Smile Care Center",
+  },
+];

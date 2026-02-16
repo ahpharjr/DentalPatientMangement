@@ -6,19 +6,19 @@ import RowActions from "../../components/ui/RowActions";
 const members = [
   {
     id: "1",
-    name: "Dr. Maria Santos",
+    name: "Dr. Sai Pee",
     role: "Dentist",
-    email: "maria@clinic.com",
+    email: "saipee@clinic.com",
     phone: "09123456789",
     clinic: "Clinic 1",
   },
   {
     id: "2",
-    name: "John Rivera",
+    name: "John Doe",
     role: "Dental Assistant",
     email: "john@clinic.com",
     phone: "09987654321",
-    clinic: "Clinic 1",
+    clinic: "Clinic 2",
   },
   {
     id: "3",

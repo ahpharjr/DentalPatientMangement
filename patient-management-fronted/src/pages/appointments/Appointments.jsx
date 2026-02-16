@@ -11,27 +11,6 @@ const filters = [
   { key: "done", label: "Done" },
 ];
 
-const appointmentsData = [
-  {
-    id: 1,
-    patient: "Dela Cruz, Juan",
-    scheduledAt: "2025-09-29T09:00",
-    cost: 200,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Dental Cleaning"],
-  },
-  {
-    id: 2,
-    patient: "Santos, Maria",
-    scheduledAt: "2025-09-30T14:30",
-    cost: 1500,
-    paymentStatus: "paid",
-    status: "done",
-    procedures: ["Tooth Extraction"],
-  },
-];
-
 export default function Appointments() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -214,3 +193,142 @@ export default function Appointments() {
     </div>
   );
 }
+
+const appointmentsData = [
+  {
+    id: 1,
+    patient: "Santos, Maria L.",
+    scheduledAt: "2026-02-16T09:00",
+    cost: 1200,
+    paymentStatus: "paid",
+    status: "done",
+    procedures: ["Dental Cleaning"],
+  },
+  {
+    id: 2,
+    patient: "Reyes, Carlo P.",
+    scheduledAt: "2026-02-17T10:30",
+    cost: 3500,
+    paymentStatus: "unpaid",
+    status: "scheduled",
+    procedures: ["Root Canal Treatment"],
+  },
+  {
+    id: 3,
+    patient: "Garcia, Angela M.",
+    scheduledAt: "2026-02-18T14:00",
+    cost: 800,
+    paymentStatus: "paid",
+    status: "scheduled",
+    procedures: ["Dental Filling (Composite)"],
+  },
+  {
+    id: 4,
+    patient: "Torres, Michael A.",
+    scheduledAt: "2026-02-19T11:15",
+    cost: 15000,
+    paymentStatus: "unpaid",
+    status: "scheduled",
+    procedures: ["Dental Implant Surgery"],
+  },
+  {
+    id: 5,
+    patient: "Villanueva, Sophia R.",
+    scheduledAt: "2026-02-20T16:00",
+    cost: 2500,
+    paymentStatus: "paid",
+    status: "done",
+    procedures: ["Tooth Extraction"],
+  },
+  {
+    id: 6,
+    patient: "Lim, Daniel K.",
+    scheduledAt: "2026-02-21T09:45",
+    cost: 5000,
+    paymentStatus: "unpaid",
+    status: "scheduled",
+    procedures: ["Dental Crown Placement"],
+  },
+  {
+    id: 7,
+    patient: "Chua, Isabella T.",
+    scheduledAt: "2026-02-22T13:30",
+    cost: 6000,
+    paymentStatus: "paid",
+    status: "scheduled",
+    procedures: ["Orthodontic Braces Installation"],
+  },
+  {
+    id: 8,
+    patient: "Tan, Joshua C.",
+    scheduledAt: "2026-02-23T08:30",
+    cost: 1200,
+    paymentStatus: "unpaid",
+    status: "scheduled",
+    procedures: ["Dental Cleaning"],
+  },
+  {
+    id: 9,
+    patient: "Lopez, Camille D.",
+    scheduledAt: "2026-02-24T15:00",
+    cost: 2800,
+    paymentStatus: "paid",
+    status: "done",
+    procedures: ["Teeth Whitening"],
+  },
+  {
+    id: 10,
+    patient: "Fernandez, Mark J.",
+    scheduledAt: "2026-02-25T10:00",
+    cost: 4000,
+    paymentStatus: "unpaid",
+    status: "scheduled",
+    procedures: ["Dental Crown Placement"],
+  },
+  {
+    id: 11,
+    patient: "Cruz, Andrea P.",
+    scheduledAt: "2026-02-26T09:30",
+    cost: 950,
+    paymentStatus: "paid",
+    status: "scheduled",
+    procedures: ["Dental Filling (Composite)"],
+  },
+  {
+    id: 12,
+    patient: "Navarro, Kevin R.",
+    scheduledAt: "2026-02-27T14:15",
+    cost: 18000,
+    paymentStatus: "unpaid",
+    status: "scheduled",
+    procedures: ["Dental Implant Surgery"],
+  },
+  {
+    id: 13,
+    patient: "Gonzales, Patricia M.",
+    scheduledAt: "2026-02-28T11:45",
+    cost: 3200,
+    paymentStatus: "paid",
+    status: "done",
+    procedures: ["Root Canal Treatment"],
+  },
+  {
+    id: 14,
+    patient: "Sy, Benjamin T.",
+    scheduledAt: "2026-03-01T13:00",
+    cost: 2200,
+    paymentStatus: "unpaid",
+    status: "scheduled",
+    procedures: ["Tooth Extraction"],
+  },
+  {
+    id: 15,
+    patient: "Aquino, Hannah L.",
+    scheduledAt: "2026-03-02T16:30",
+    cost: 5500,
+    paymentStatus: "paid",
+    status: "scheduled",
+    procedures: ["Orthodontic Braces Installation"],
+  },
+];
+

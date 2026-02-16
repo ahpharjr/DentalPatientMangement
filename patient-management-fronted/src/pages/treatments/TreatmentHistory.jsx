@@ -9,27 +9,6 @@ const filters = [
   { key: "all", label: "All" },
 ];
 
-const treatmentData = [
-  {
-    id: 1,
-    patient: "Santos, Maria",
-    procedure: "Tooth Extraction",
-    clinic: "Mong Yang Clinic",
-    completedAt: new Date(),
-    cost: 1500,
-    paymentStatus: "paid",
-  },
-  {
-    id: 2,
-    patient: "Dela Cruz, Juan",
-    procedure: "Dental Cleaning",
-    clinic: "Mong Yang Clinic",
-    completedAt: new Date(Date.now() - 86400000),
-    cost: 500,
-    paymentStatus: "unpaid",
-  },
-];
-
 export default function TreatmentHistory() {
   const [activeFilter, setActiveFilter] = useState("today");
   const [treatments] = useState(treatmentData);
@@ -182,3 +161,123 @@ export default function TreatmentHistory() {
     </div>
   );
 }
+
+const treatmentData = [
+  {
+    id: 1,
+    patient: "Santos, Maria L.",
+    procedure: "Tooth Extraction",
+    clinic: "Mong Yang Clinic",
+    completedAt: new Date(),
+    cost: 2500,
+    paymentStatus: "paid",
+  },
+  {
+    id: 2,
+    patient: "Reyes, Carlo P.",
+    procedure: "Dental Cleaning",
+    clinic: "BrightSmile Clinic",
+    completedAt: new Date(),
+    cost: 1200,
+    paymentStatus: "paid",
+  },
+  {
+    id: 3,
+    patient: "Garcia, Angela M.",
+    procedure: "Root Canal Treatment",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(),
+    cost: 4500,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 4,
+    patient: "Torres, Michael A.",
+    procedure: "Dental Crown Placement",
+    clinic: "Mong Yang Clinic",
+    completedAt: new Date(Date.now() - 86400000),
+    cost: 5200,
+    paymentStatus: "paid",
+  },
+  {
+    id: 5,
+    patient: "Villanueva, Sophia R.",
+    procedure: "Teeth Whitening",
+    clinic: "Smile Care Center",
+    completedAt: new Date(Date.now() - 86400000),
+    cost: 3000,
+    paymentStatus: "paid",
+  },
+  {
+    id: 6,
+    patient: "Lim, Daniel K.",
+    procedure: "Dental Implant Surgery",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(Date.now() - 86400000),
+    cost: 20000,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 7,
+    patient: "Chua, Isabella T.",
+    procedure: "Dental Filling (Composite)",
+    clinic: "BrightSmile Clinic",
+    completedAt: new Date(Date.now() - 2 * 86400000),
+    cost: 950,
+    paymentStatus: "paid",
+  },
+  {
+    id: 8,
+    patient: "Tan, Joshua C.",
+    procedure: "Tooth Extraction",
+    clinic: "Smile Care Center",
+    completedAt: new Date(Date.now() - 3 * 86400000),
+    cost: 2200,
+    paymentStatus: "paid",
+  },
+  {
+    id: 9,
+    patient: "Lopez, Camille D.",
+    procedure: "Dental Cleaning",
+    clinic: "Mong Yang Clinic",
+    completedAt: new Date(Date.now() - 4 * 86400000),
+    cost: 1200,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 10,
+    patient: "Fernandez, Mark J.",
+    procedure: "Root Canal Treatment",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(Date.now() - 5 * 86400000),
+    cost: 3800,
+    paymentStatus: "paid",
+  },
+  {
+    id: 11,
+    patient: "Cruz, Andrea P.",
+    procedure: "Orthodontic Braces Installation",
+    clinic: "BrightSmile Clinic",
+    completedAt: new Date(Date.now() - 6 * 86400000),
+    cost: 6000,
+    paymentStatus: "paid",
+  },
+  {
+    id: 12,
+    patient: "Navarro, Kevin R.",
+    procedure: "Dental Crown Placement",
+    clinic: "Smile Care Center",
+    completedAt: new Date(Date.now() - 7 * 86400000),
+    cost: 5000,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 13,
+    patient: "Herrera, Lucas T.",
+    procedure: "Dental Implant Surgery",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(Date.now() - 8 * 86400000),
+    cost: 21000,
+    paymentStatus: "paid",
+  },
+];

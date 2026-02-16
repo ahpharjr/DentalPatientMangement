@@ -29,8 +29,8 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <StatCard
           title="Today's Treatments"
-          value="0"
-          subtitle="+0 from yesterday"
+          value="9"
+          subtitle="+2 from yesterday"
           icon={Calendar}
           onClick={() => navigate("/treatments?filter=today")}
         />
@@ -38,14 +38,14 @@ export default function Dashboard() {
         <StatCard
           title="Total Patients"
           value="192"
-          subtitle="+0 new this week"
+          subtitle="+10 new this week"
           icon={Users}
           onClick={() => navigate("/patients")}
         />
 
         <StatCard
           title="Today's Revenue"
-          value="₱0.00"
+          value="¥5060.00"
           subtitle="+0 from yesterday"
           icon={DollarSign}
           onClick={() => navigate("/reports")}
@@ -53,7 +53,7 @@ export default function Dashboard() {
 
         <StatCard
           title="Upcoming Appointments"
-          value="0"
+          value="8"
           subtitle="Next 3 days"
           icon={Clock}
           onClick={() => navigate("/appointments?filter=next3")}
