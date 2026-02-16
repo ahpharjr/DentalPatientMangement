@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Clinics from "./pages/clinics/Clinics";
 import NewClinic from "./pages/clinics/NewClinic";
 import ClinicDetails from "./pages/clinics/ClinicDetails";
+import EditClinic from "./pages/clinics/EditClinci";
 import Patients from "./pages/patients/Patients";
 import AddPatient from "./pages/patients/AddPatient";
 import PatientDetails from "./pages/patients/PatientDetails";
@@ -23,6 +24,10 @@ import TreatmentDetails from "./pages/treatments/TreatmentDetails";
 import NewTreatment from "./pages/treatments/NewTreatment";
 import MemberDetails from "./pages/members/MemberDetails";
 import Members from "./pages/members/Members";
+import EditMember from "./pages/members/EditMember";
+import NewMember from "./pages/members/NewMember";
+import Profile from "./pages/profiles";
+import Reports from "./pages/Reports";
 import "./App.css";
 
 function App() {
@@ -35,6 +40,7 @@ function App() {
           <Route path="/clinics" element={<Clinics />} />
           <Route path="/clinics/new" element={<NewClinic />} />
           <Route path="/clinics/:id" element={<ClinicDetails />} />
+          <Route path="/clinics/:id/edit" element={<EditClinic />} />
           <Route path="/patients" element={<Patients />} />
           <Route path="/patients/new" element={<AddPatient />} />
           <Route path="/patients/:id" element={<PatientDetails />} />
@@ -54,6 +60,10 @@ function App() {
           <Route path="/treatments/new" element={<NewTreatment />} />
           <Route path="/members" element={<Members />} />
           <Route path="/members/:id" element={<MemberDetails />} />
+          <Route path="/members/:id/edit" element={<EditMember />} />
+          <Route path="/members/new" element={<NewMember />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/reports" element={<Reports />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>

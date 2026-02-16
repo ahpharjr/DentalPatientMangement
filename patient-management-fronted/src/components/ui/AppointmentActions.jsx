@@ -1,4 +1,4 @@
-import { Eye, Pencil, CheckCircle, Trash2, MoreHorizontal } from "lucide-react";
+import { Eye, Pencil, CheckCircle, Trash2, MoreVertical } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,9 +10,9 @@ export function AppointmentActions({ id }) {
     <div className="relative inline-block text-left">
       <button
         onClick={() => setOpen(!open)}
-        className="rounded-md p-1 text-zinc-400 hover:bg-zinc-700 hover:text-white"
+        className="rounded-md p-1 text-zinc-400 hover:bg-zinc-700 hover:text-white cursor-pointer"
       >
-        <MoreHorizontal className="h-4 w-4" />
+        <MoreVertical className="h-4 w-4" />
       </button>
 
       {open && (

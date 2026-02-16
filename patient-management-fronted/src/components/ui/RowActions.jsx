@@ -20,7 +20,7 @@ export default function RowActions({ onView, onEdit, onDelete }) {
     <div className="relative inline-block text-left" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="rounded-md p-1 hover:bg-zinc-800"
+        className="rounded-md p-1 hover:bg-zinc-800 cursor-pointer"
       >
         <MoreVertical className="h-4 w-4 text-zinc-300" />
       </button>
@@ -29,7 +29,7 @@ export default function RowActions({ onView, onEdit, onDelete }) {
         <div className="absolute right-0 z-20 mt-2 w-44 rounded-lg border border-white/10 bg-zinc-900 shadow-lg">
           <button
             onClick={onView}
-            className="flex w-full items-center gap-2 px-3 py-2 text-sm text-white hover:bg-zinc-800"
+            className="flex w-full items-center gap-2 px-3 py-2 text-sm text-white hover:bg-zinc-800 cursor-pointer"
           >
             <Eye className="h-4 w-4" />
             View Details
@@ -37,7 +37,7 @@ export default function RowActions({ onView, onEdit, onDelete }) {
 
           <button
             onClick={onEdit}
-            className="flex w-full items-center gap-2 px-3 py-2 text-sm text-white hover:bg-zinc-800"
+            className="flex w-full items-center gap-2 px-3 py-2 text-sm text-white hover:bg-zinc-800 cursor-pointer"
           >
             <Pencil className="h-4 w-4" />
             Edit Patient
@@ -45,7 +45,7 @@ export default function RowActions({ onView, onEdit, onDelete }) {
 
           <button
             onClick={onDelete}
-            className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-400 hover:bg-red-500/10"
+            className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 cursor-pointer"
           >
             <Trash2 className="h-4 w-4" />
             Delete Patient

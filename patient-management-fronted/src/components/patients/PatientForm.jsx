@@ -1,6 +1,5 @@
 import Input from "../ui/Input";
 import Select from "../ui/Select";
-import Textarea from "../ui/Testarea";
 import MedicalHistorySection from "./MedicalHistorySection";
 import EmergencyContacts from "./EmergencyContacts";
 import Button from "../ui/Button";
@@ -18,12 +17,8 @@ export default function PatientForm() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Input label="Last Name" required />
-          <Input label="First Name" required />
-          <Input label="Middle Name" />
-        </div>
-
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Input 
+            label="Full Name" required />
           <Select
             label="Gender"
             required
@@ -32,6 +27,18 @@ export default function PatientForm() {
               { label: "Female", value: "female" },
             ]}
           />
+          <div>
+            <label className="text-sm text-zinc-300">
+              Scheduled Date <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="date"
+              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900  px-3 py-2 text-sm text-white"
+            />
+          </div>
+        </div>
+
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <Select
             label="Marital Status"
             required
@@ -50,8 +57,14 @@ export default function PatientForm() {
           />
         </div>
 
-        <div className="mt-4">
-          <Textarea label="Address" />
+        {/* Address */}
+        <div className="mt-3">
+          <label className="text-sm ">Address</label>
+          <textarea
+            name="address"
+            rows="3"
+            className=" w-full rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
+          />
         </div>
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">

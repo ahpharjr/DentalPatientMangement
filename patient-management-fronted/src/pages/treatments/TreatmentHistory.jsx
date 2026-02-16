@@ -9,27 +9,6 @@ const filters = [
   { key: "all", label: "All" },
 ];
 
-const treatmentData = [
-  {
-    id: 1,
-    patient: "Santos, Maria",
-    procedure: "Tooth Extraction",
-    clinic: "Mong Yang Clinic",
-    completedAt: new Date(),
-    cost: 1500,
-    paymentStatus: "paid",
-  },
-  {
-    id: 2,
-    patient: "Dela Cruz, Juan",
-    procedure: "Dental Cleaning",
-    clinic: "Mong Yang Clinic",
-    completedAt: new Date(Date.now() - 86400000),
-    cost: 500,
-    paymentStatus: "unpaid",
-  },
-];
-
 export default function TreatmentHistory() {
   const [activeFilter, setActiveFilter] = useState("today");
   const [treatments] = useState(treatmentData);
@@ -61,7 +40,7 @@ export default function TreatmentHistory() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <PageHeader
         title="Treatment History"
@@ -87,21 +66,28 @@ export default function TreatmentHistory() {
         ))}
       </div>
 
-      {/* Search */}
-      <div className="flex gap-2">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
-          <input
-            placeholder="Search by patient or procedure..."
-            className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
-          />
-        </div>
 
-        <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white hover:bg-zinc-800">
-          <RotateCcw className="h-4 w-4" />
-          Refresh
-        </button>
+      <div className="flex justify-between items-center">
+        {/* Search */}
+        <div className="flex gap-2 max-w-md w-full">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
+            <input
+              placeholder="Search by patient or procedure..."
+              className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
+            />
+          </div>
+
+          <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white hover:bg-zinc-800">
+            <RotateCcw className="h-4 w-4" />
+            Refresh
+          </button>
+        </div>
+        <p className="text-sm text-zinc-400 mr-4">
+          Total Treatments: <span className="font-semibold text-white">{treatments.length}</span>
+        </p>
       </div>
+
 
       {/* Table */}
       <div className="rounded-lg border border-white/10 bg-zinc-900">
@@ -159,10 +145,11 @@ export default function TreatmentHistory() {
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => navigate(`/treatments/history/${t.id}`)}
-                      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-zinc-400 hover:bg-zinc-800 hover:text-white cursor-pointer"
                       title="View treatment details"
                     >
-                      <Eye className="h-4 w-4" />
+                      View
+                      {/* <Eye className="h-4 w-4" /> */}
                     </button>
                   </td>
                 </tr>
@@ -174,3 +161,123 @@ export default function TreatmentHistory() {
     </div>
   );
 }
+
+const treatmentData = [
+  {
+    id: 1,
+    patient: "Santos, Maria L.",
+    procedure: "Tooth Extraction",
+    clinic: "Mong Yang Clinic",
+    completedAt: new Date(),
+    cost: 2500,
+    paymentStatus: "paid",
+  },
+  {
+    id: 2,
+    patient: "Reyes, Carlo P.",
+    procedure: "Dental Cleaning",
+    clinic: "BrightSmile Clinic",
+    completedAt: new Date(),
+    cost: 1200,
+    paymentStatus: "paid",
+  },
+  {
+    id: 3,
+    patient: "Garcia, Angela M.",
+    procedure: "Root Canal Treatment",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(),
+    cost: 4500,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 4,
+    patient: "Torres, Michael A.",
+    procedure: "Dental Crown Placement",
+    clinic: "Mong Yang Clinic",
+    completedAt: new Date(Date.now() - 86400000),
+    cost: 5200,
+    paymentStatus: "paid",
+  },
+  {
+    id: 5,
+    patient: "Villanueva, Sophia R.",
+    procedure: "Teeth Whitening",
+    clinic: "Smile Care Center",
+    completedAt: new Date(Date.now() - 86400000),
+    cost: 3000,
+    paymentStatus: "paid",
+  },
+  {
+    id: 6,
+    patient: "Lim, Daniel K.",
+    procedure: "Dental Implant Surgery",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(Date.now() - 86400000),
+    cost: 20000,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 7,
+    patient: "Chua, Isabella T.",
+    procedure: "Dental Filling (Composite)",
+    clinic: "BrightSmile Clinic",
+    completedAt: new Date(Date.now() - 2 * 86400000),
+    cost: 950,
+    paymentStatus: "paid",
+  },
+  {
+    id: 8,
+    patient: "Tan, Joshua C.",
+    procedure: "Tooth Extraction",
+    clinic: "Smile Care Center",
+    completedAt: new Date(Date.now() - 3 * 86400000),
+    cost: 2200,
+    paymentStatus: "paid",
+  },
+  {
+    id: 9,
+    patient: "Lopez, Camille D.",
+    procedure: "Dental Cleaning",
+    clinic: "Mong Yang Clinic",
+    completedAt: new Date(Date.now() - 4 * 86400000),
+    cost: 1200,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 10,
+    patient: "Fernandez, Mark J.",
+    procedure: "Root Canal Treatment",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(Date.now() - 5 * 86400000),
+    cost: 3800,
+    paymentStatus: "paid",
+  },
+  {
+    id: 11,
+    patient: "Cruz, Andrea P.",
+    procedure: "Orthodontic Braces Installation",
+    clinic: "BrightSmile Clinic",
+    completedAt: new Date(Date.now() - 6 * 86400000),
+    cost: 6000,
+    paymentStatus: "paid",
+  },
+  {
+    id: 12,
+    patient: "Navarro, Kevin R.",
+    procedure: "Dental Crown Placement",
+    clinic: "Smile Care Center",
+    completedAt: new Date(Date.now() - 7 * 86400000),
+    cost: 5000,
+    paymentStatus: "unpaid",
+  },
+  {
+    id: 13,
+    patient: "Herrera, Lucas T.",
+    procedure: "Dental Implant Surgery",
+    clinic: "Prime Dental Studio",
+    completedAt: new Date(Date.now() - 8 * 86400000),
+    cost: 21000,
+    paymentStatus: "paid",
+  },
+];

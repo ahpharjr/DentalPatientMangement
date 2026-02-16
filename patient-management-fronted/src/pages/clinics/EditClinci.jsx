@@ -1,45 +1,58 @@
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 
-export default function NewClinic() {
+const clinics = [
+  {
+    id: "1",
+    name: "Clinic 1",
+    province: "Laguna",
+    city: "Pakil",
+    district: "Talavera",
+    postalCode: "4017",
+    street: "292 Cabcede Street",
+    phone: "09123456789",
+    email: "clinic1@email.com",
+    status: "Active",
+  },
+  {
+    id: "2",
+    name: "Clinic 2",
+    province: "Laguna",
+    city: "Pakil",
+    district: "Talavera",
+    postalCode: "4017",
+    street: "232 Cabcede Street",
+    phone: "09123456789",
+    email: "clinic2@email.com",
+    status: "Inactive",
+  },
+];
+
+export default function EditClinic() {
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    name: "",
-    province: "",
-    city: "",
-    district: "",
-    postalCode: "",
-    street: "",
-    phone: "",
-    email: "",
-    status: "Active",
-  });
+  const clinicData = clinics.find((c) => c.id === id);
+
+  const [form, setForm] = useState(clinicData);
+
+  if (!form) {
+    return <p className="text-zinc-400">Clinic not found</p>;
+  }
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const toggleStatus = () => {
-    setForm((prev) => ({
-      ...prev,
-      status: prev.status === "Active" ? "Inactive" : "Active",
-    }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Updated clinic:", form);
 
-    console.log("New Clinic Created:", form);
+    // TODO: replace with real API update call
 
-    // 🔥 TODO: Replace with API call
-    // await createClinic(form)
-
-    navigate("/clinics");
+    navigate(`/clinics/${id}`);
   };
 
   return (
@@ -47,20 +60,20 @@ export default function NewClinic() {
 
       {/* Back */}
       <button
-        onClick={() => navigate("/clinics")}
+        onClick={() => navigate(`/clinics/${id}`)}
         className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white cursor-pointer"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Clinics
+        Back to Details
       </button>
 
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-white">
-          Add New Clinic
+          Edit Clinic
         </h1>
         <p className="text-zinc-400">
-          Add a new dental clinic location to your organization
+          Update clinic information and status
         </p>
       </div>
 
@@ -71,7 +84,7 @@ export default function NewClinic() {
 
           {/* Name */}
           <Input
-            label="Name *"
+            label="Clinic Name *"
             name="name"
             value={form.name}
             onChange={handleChange}
@@ -133,46 +146,21 @@ export default function NewClinic() {
             />
           </div>
 
-          {/* Active Toggle */}
-          <div className="flex items-center justify-between pt-2">
-            <span className="text-sm text-zinc-300">
-              Clinic Active
-            </span>
-
-            <button
-              type="button"
-              onClick={toggleStatus}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 cursor-pointer
-                ${form.status === "Active"
-                  ? "bg-emerald-500 shadow-lg shadow-emerald-500/30"
-                  : "bg-zinc-600"
-                }`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300
-                  ${form.status === "Active"
-                    ? "translate-x-6"
-                    : "translate-x-1"
-                  }`}
-              />
-            </button>
-          </div>
-
           {/* Actions */}
           <div className="flex justify-end gap-3 pt-6">
             <button
               type="button"
-              onClick={() => navigate("/clinics")}
-              className="rounded-lg border border-white/10 px-4 py-2 text-sm hover:bg-zinc-800 cursor-pointer"
+              onClick={() => navigate(`/clinics/${id}`)}
+              className="rounded-lg border border-white/10 px-4 py-2 text-sm hover:bg-zinc-800"
             >
               Cancel
             </button>
 
             <button
               type="submit"
-              className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200 cursor-pointer"
+              className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200"
             >
-              Create Clinic
+              Save Changes
             </button>
           </div>
 
@@ -188,7 +176,7 @@ function Input({ label, name, value, onChange }) {
       <label className="text-sm text-zinc-300">{label}</label>
       <input
         name={name}
-        value={value}
+        value={value || ""}
         onChange={onChange}
         className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-800 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
       />

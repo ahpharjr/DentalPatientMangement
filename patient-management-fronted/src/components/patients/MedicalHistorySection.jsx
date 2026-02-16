@@ -31,10 +31,15 @@ export default function MedicalHistorySection() {
             <Checkbox label="Cancer" />
             <Checkbox label="None" />
           </div>
-          <Textarea
-            className="mt-3"
-            placeholder="Please specify details about medical conditions..."
-          />
+          <div className="mt-3">
+            <label className="text-sm ">Address</label>
+            <textarea
+              name="address"
+              placeholder="Please specify details about medical conditions..."
+              rows="3"
+              className=" w-full rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
+            />
+          </div>
         </div>
       </div>
     </section>
