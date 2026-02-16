@@ -69,7 +69,6 @@ export default function TreatmentHistory() {
         icon={<ClipboardCheck className="h-5 w-5 text-zinc-400" />}
       />
 
-
       {/* Filters */}
       <div className="flex rounded-lg border border-white/10 bg-zinc-900 p-1 w-fit">
         {filters.map((f) => (
@@ -100,9 +99,6 @@ export default function TreatmentHistory() {
             />
           </div>
 
-          <button className="rounded-lg bg-zinc-800 px-4 py-2 text-sm text-white hover:bg-zinc-700">
-            Search
-          </button>
           <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white hover:bg-zinc-800">
             <RotateCcw className="h-4 w-4" />
             Refresh
@@ -170,10 +166,11 @@ export default function TreatmentHistory() {
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => navigate(`/treatments/history/${t.id}`)}
-                      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-zinc-400 hover:bg-zinc-800 hover:text-white cursor-pointer"
                       title="View treatment details"
                     >
-                      <Eye className="h-4 w-4" />
+                      View
+                      {/* <Eye className="h-4 w-4" /> */}
                     </button>
                   </td>
                 </tr>

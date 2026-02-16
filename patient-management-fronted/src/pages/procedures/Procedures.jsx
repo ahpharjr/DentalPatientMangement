@@ -50,10 +50,6 @@ export default function Procedures() {
               className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
             />
           </div>
-
-          <button className="rounded-lg bg-zinc-800 px-4 text-sm text-white hover:bg-zinc-700">
-            Search
-          </button>
         </div>
 
         <p className="text-sm text-zinc-400 mr-4">

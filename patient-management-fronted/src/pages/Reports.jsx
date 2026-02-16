@@ -63,7 +63,7 @@ export default function Reports() {
     const growth = 12.5;
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-5">
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">

@@ -1,4 +1,4 @@
-import { Plus, Search, RotateCcw, Activity } from "lucide-react";
+import { Plus, Calendar, Activity } from "lucide-react";
 import { useState } from "react";
 import PageHeader from "../../components/ui/PageHeader";
 import { useNavigate } from "react-router-dom";
@@ -60,7 +60,7 @@ export default function Treatments() {
         action={
           <button
             onClick={() => navigate("/treatments/new")}
-            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800"
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800 cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             New Treatment
@@ -70,17 +70,18 @@ export default function Treatments() {
 
       <div className="flex justify-between items-center">
         {/* Filters */}
-        <div className="flex gap-2">
+        <div className="flex rounded-lg border border-white/10 bg-zinc-900 p-1">
           {filters.map((f) => (
             <button
               key={f.key}
               onClick={() => setActiveFilter(f.key)}
-              className={`rounded-lg px-3 py-1.5 text-sm transition
+              className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition cursor-pointer
               ${activeFilter === f.key
                   ? "bg-zinc-800 text-white"
                   : "text-zinc-400 hover:text-white"
                 }`}
             >
+              <Calendar className="h-4 w-4" />
               {f.label}
             </button>
           ))}
@@ -139,7 +140,7 @@ export default function Treatments() {
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => navigate(`/treatments/${t.id}`)}
-                      className="text-sm text-blue-400 hover:text-blue-300"
+                      className="text-sm text-blue-400 hover:text-blue-300 cursor-pointer"
                     >
                       View
                     </button>

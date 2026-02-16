@@ -7,7 +7,7 @@ export default function AddPatient() {
     <div className="max-w-5xl">
       <Link
         to="/patients"
-        className="mb-4 inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white"
+        className="mb-4 inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white cursor-pointer"
       >
         <ArrowLeft className="h-4 w-4" /> Back to Patients
       </Link>
