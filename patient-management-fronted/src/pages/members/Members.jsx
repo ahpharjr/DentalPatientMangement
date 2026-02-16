@@ -1,6 +1,7 @@
 import PageHeader from "../../components/ui/PageHeader";
 import { Plus, Search, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import RowActions from "../../components/ui/RowActions";
 
 const members = [
   {
@@ -18,6 +19,14 @@ const members = [
     email: "john@clinic.com",
     phone: "09987654321",
     clinic: "Clinic 1",
+  },
+  {
+    id: "3",
+    name: "Ana Martinez",
+    role: "Dentist",
+    email: "ana@clinic.com",
+    phone: "09876543210",
+    clinic: "Clinic 2",
   },
 ];
 
@@ -42,7 +51,7 @@ export default function Members() {
         action={
           <button
             onClick={() => navigate("/members/new")}
-            className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white shadow-lg hover:bg-blue-500 transition"
+            className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white shadow-lg hover:bg-blue-500 transition cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             Add Member
@@ -50,22 +59,22 @@ export default function Members() {
         }
       />
       <div className="flex justify-between items-center">
-      {/* Search Bar */}
-      <div className="relative max-w-sm w-full">
-        <Search className="absolute left-3 top-3 h-4 w-4 text-zinc-500" />
-        <input
-          placeholder="Search members..."
-          className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2.5 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
-        />
+        {/* Search Bar */}
+        <div className="relative max-w-sm w-full">
+          <Search className="absolute left-3 top-3 h-4 w-4 text-zinc-500" />
+          <input
+            placeholder="Search members..."
+            className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2.5 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <p className="text-sm text-zinc-400 mr-4">
+          Total Members: <span className="font-semibold text-white">{members.length}</span>
+        </p>
       </div>
 
-      <p className="text-sm text-zinc-400 mr-4">
-        Total Members: <span className="font-semibold text-white">{members.length}</span>
-      </p>
-</div>
-
       {/* Modern Table Card */}
-      <div className="rounded-lg border border-white/10 bg-zinc-950 shadow-xl overflow-hidden">
+      <div className="rounded-lg border border-white/10 bg-zinc-950 shadow-xl overflow-visible">
 
         <table className="w-full text-sm">
 
@@ -124,13 +133,18 @@ export default function Members() {
 
                 {/* View Only */}
                 <td className="px-6 py-2 text-right">
-                  <button
+                  <RowActions
+                    onView={() => navigate(`/members/${m.id}`)}
+                    onEdit={() => navigate(`/members/${m.id}/edit`)}
+                    onDelete={() => alert("Delete member")}
+                  />
+                  {/* <button
                     onClick={() => navigate(`/members/${m.id}`)}
                     className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-medium text-white cursor-pointer"
                   >
                     <Eye className="h-5 w-5 hover:text-blue-400" />
-                    {/* View Details */}
-                  </button>
+                    View Details
+                  </button> */}
                 </td>
 
               </tr>

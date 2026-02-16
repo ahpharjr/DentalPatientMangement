@@ -53,7 +53,7 @@ export default function Patients() {
         action={
           <button
             onClick={() => navigate("/patients/new")}
-            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800"
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800 cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             Add Patient
@@ -70,9 +70,9 @@ export default function Patients() {
               className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
             />
           </div>
-          <button className="rounded-lg bg-zinc-800 px-4 text-sm text-white hover:bg-zinc-700">
+          {/* <button className="rounded-lg bg-zinc-800 px-4 text-sm text-white hover:bg-zinc-700">
             Search
-          </button>
+          </button> */}
         </div>
 
         <p className="text-sm text-zinc-400 mr-4">
@@ -81,7 +81,7 @@ export default function Patients() {
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-lg border border-white/10">
+      <div className="overflow-visible rounded-lg border border-white/10">
         <table className="w-full text-sm">
           <thead className="bg-zinc-900 text-zinc-400">
             <tr>

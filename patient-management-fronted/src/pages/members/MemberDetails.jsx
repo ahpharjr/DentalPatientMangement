@@ -26,7 +26,7 @@ export default function MemberDetails() {
                 <div>
                     <button
                         onClick={() => navigate("/members")}
-                        className="mb-2 flex items-center gap-1 text-sm text-zinc-400 hover:text-white"
+                        className="mb-2 flex items-center gap-1 text-sm text-zinc-400 hover:text-white cursor-pointer"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to Members
@@ -40,8 +40,9 @@ export default function MemberDetails() {
                     </p>
                 </div>
 
-                <div className="flex gap-2">
-                    <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800">
+                {/* Action Buttons */}
+                {/* <div className="flex gap-2">
+                    <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-sm text-white hover:bg-zinc-800 cursor-pointer">
                         <Pencil className="h-4 w-4" />
                         Edit Member
                     </button>
@@ -54,11 +55,10 @@ export default function MemberDetails() {
                                     hover:bg-red-600 hover:border-red-600 hover:text-white
                                 "
                     >
-                        <Trash2 className="h-4 w-4 transition-colors duration-200 group-hover:text-white" />
+                        <Trash2 className="h-4 w-4 transition-colors duration-200 group-hover:text-white " />
                         Delete Member
                     </button>
-
-                </div>
+                </div> */}
             </div>
 
             {/* Profile Card */}

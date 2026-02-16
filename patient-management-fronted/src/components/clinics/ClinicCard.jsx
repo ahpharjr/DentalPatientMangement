@@ -39,7 +39,7 @@ export default function ClinicCard({ clinic }) {
       {/* Footer */}
       <button 
         onClick={() => navigate(`/clinics/${clinic.id}`)}
-        className="mt-4 w-full rounded-lg border border-white/10 bg-zinc-800 py-2 text-sm text-white hover:bg-zinc-700">
+        className="mt-4 w-full rounded-lg border border-white/10 bg-zinc-800 py-2 text-sm text-white hover:bg-zinc-700 cursor-pointer">
         View Clinic Details
       </button>
     </Card>

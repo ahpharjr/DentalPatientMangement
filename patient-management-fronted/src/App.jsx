@@ -24,6 +24,8 @@ import TreatmentDetails from "./pages/treatments/TreatmentDetails";
 import NewTreatment from "./pages/treatments/NewTreatment";
 import MemberDetails from "./pages/members/MemberDetails";
 import Members from "./pages/members/Members";
+import EditMember from "./pages/members/EditMember";
+import NewMember from "./pages/members/NewMember";
 import Profile from "./pages/profiles";
 import Reports from "./pages/Reports";
 import "./App.css";
@@ -58,6 +60,8 @@ function App() {
           <Route path="/treatments/new" element={<NewTreatment />} />
           <Route path="/members" element={<Members />} />
           <Route path="/members/:id" element={<MemberDetails />} />
+          <Route path="/members/:id/edit" element={<EditMember />} />
+          <Route path="/members/new" element={<NewMember />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/reports" element={<Reports />} />
         </Routes>
