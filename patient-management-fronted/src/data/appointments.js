@@ -1,6 +1,6 @@
 export const appointments = [
   {
-    id: "1",
+    id: "2",
     patient: {
       name: "Dela Cruz, Juan",
       email: null,

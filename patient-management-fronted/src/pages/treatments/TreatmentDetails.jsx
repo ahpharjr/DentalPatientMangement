@@ -175,16 +175,6 @@ export default function TreatmentDetails() {
                         Complete treatment details and clinical information
                     </p>
                 </div>
-
-                <div className="flex gap-2">
-                    <button
-                        onClick={handleSave}
-                        disabled={isSaving}
-                        className="rounded-lg bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-500 disabled:opacity-50"
-                    >
-                        {isSaving ? "Saving..." : "Save Treatment"}
-                    </button>
-                </div>
             </div>
 
             {/* Patient */}
@@ -404,6 +394,24 @@ export default function TreatmentDetails() {
 
             <MedicalHistoryCard />
             <TreatmentHistoryCard />
+
+            {/* ── Floating Save Button ── */}
+            <div className="fixed bottom-6 right-6 z-50">
+                <button
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className="flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-green-900/40 hover:bg-green-500 disabled:opacity-50 transition-all cursor-pointer"
+                >
+                    {isSaving ? (
+                        <>
+                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                            Saving...
+                        </>
+                    ) : (
+                        "Save Treatment"
+                    )}
+                </button>
+            </div>
         </div>
     );
 }
