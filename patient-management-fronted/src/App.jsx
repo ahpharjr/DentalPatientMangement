@@ -54,8 +54,8 @@ function App() {
           <Route path="/appointments/new" element={<NewAppointment />} />
           <Route path="/appointments/:id" element={<AppointmentDetails />} />
           <Route path="/treatments" element={<Treatments />} />
-          <Route path="/treatment-history" element={<TreatmentHistory />} />
-          <Route path="/treatments/history/:id" element={<TreatmentHistoryDetails />} />
+          <Route path="/treatment-histories" element={<TreatmentHistory />} />
+          <Route path="/treatment-histories/:id" element={<TreatmentHistoryDetails />} />
           <Route path="/treatments/:id" element={<TreatmentDetails />} />
           <Route path="/treatments/new" element={<NewTreatment />} />
           <Route path="/members" element={<Members />} />

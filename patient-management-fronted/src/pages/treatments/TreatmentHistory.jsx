@@ -144,7 +144,7 @@ export default function TreatmentHistory() {
                   {/* 👁 View Action */}
                   <td className="px-4 py-3 text-right">
                     <button
-                      onClick={() => navigate(`/treatments/history/${t.id}`)}
+                      onClick={() => navigate(`/treatment-histories/${t.id}`)}
                       className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-zinc-400 hover:bg-zinc-800 hover:text-white cursor-pointer"
                       title="View treatment details"
                     >

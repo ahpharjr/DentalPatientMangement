@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 const filters = [
   { key: "ongoing", label: "Ongoing" },
   { key: "today", label: "Today" },
-  { key: "completed", label: "Completed" },
+  // { key: "completed", label: "Completed" },
 ];
 
 export default function Treatments() {
@@ -27,7 +27,7 @@ export default function Treatments() {
     });
 
   const filteredTreatments = treatments.filter((t) => {
-    if (activeFilter === "completed") return t.status === "completed";
+    // if (activeFilter === "completed") return t.status === "completed";
     if (activeFilter === "today")
       return new Date(t.date).toDateString() === new Date().toDateString();
     return t.status === "ongoing";
@@ -89,8 +89,9 @@ export default function Treatments() {
                 <th className="px-4 py-3 text-left">Patient</th>
                 <th className="px-4 py-3 text-left">Procedure</th>
                 <th className="px-4 py-3 text-left">Date</th>
-                <th className="px-4 py-3 text-left">Total</th>
-                <th className="px-4 py-3 text-left">Payment</th>
+                <th className="px-4 py-3 text-left">Status</th>
+                {/* <th className="px-4 py-3 text-left">Total</th>
+                <th className="px-4 py-3 text-left">Payment</th> */}
                 <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
@@ -108,7 +109,7 @@ export default function Treatments() {
                   <td className="px-4 py-3 text-zinc-300">
                     {formatDate(t.date)}
                   </td>
-                  <td className="px-4 py-3 text-zinc-300">
+                  {/* <td className="px-4 py-3 text-zinc-300">
                     ₱{t.total.toFixed(2)}
                   </td>
                   <td className="px-4 py-3">
@@ -121,7 +122,18 @@ export default function Treatments() {
                     >
                       {t.paymentStatus === "paid" ? "Paid" : "Unpaid"}
                     </span>
-                  </td>
+                  </td> */}
+                  <td className="px-4 py-3">
+                    <span
+                      className={`rounded-full px-2 py-1 text-xs font-medium
+                        ${t.status === "completed"
+                          ? "bg-green-500/10 text-green-400"
+                          : "bg-red-500/10 text-red-400"
+                        }`}
+                    >
+                      {t.status === "completed" ? "Completed" : "Ongoing"}
+                    </span>
+                  </td> 
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => navigate(`/treatments/${t.id}`)}

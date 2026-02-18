@@ -1,4 +1,4 @@
-import { ArrowLeft,Printer, Trash2} from "lucide-react";
+import { ArrowLeft, Trash2 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import MedicalHistoryCard from "../../components/patients/MedicalHistoryCard";
@@ -134,9 +134,6 @@ export default function TreatmentDetails() {
 
         console.log("Saved Treatment:", updatedTreatment);
 
-        // TODO: Replace with real API
-        // await api.updateTreatment(id, updatedTreatment)
-
         setTimeout(() => {
             setIsSaving(false);
             alert("Treatment updated successfully!");
@@ -178,21 +175,6 @@ export default function TreatmentDetails() {
                         Complete treatment details and clinical information
                     </p>
                 </div>
-
-                <div className="flex gap-2">
-                    <button
-                        onClick={handleSave}
-                        disabled={isSaving}
-                        className="rounded-lg bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-500 disabled:opacity-50"
-                    >
-                        {isSaving ? "Saving..." : "Save Treatment"}
-                    </button>
-
-                    <button className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200">
-                        <Printer className="h-4 w-4" />
-                        Print Prescription
-                    </button>
-                </div>
             </div>
 
             {/* Patient */}
@@ -210,7 +192,6 @@ export default function TreatmentDetails() {
 
             {/* ================= CLINICAL NOTES ================= */}
             <Card>
-                {/* Header (Clickable) */}
                 <div
                     onClick={() => setShowNotes(!showNotes)}
                     className="flex cursor-pointer items-center justify-between"
@@ -218,17 +199,13 @@ export default function TreatmentDetails() {
                     <h3 className="text-lg font-semibold text-white">
                         Clinical Notes
                     </h3>
-
                     <button className="text-sm text-blue-400 hover:text-blue-300">
                         {showNotes ? "Hide" : "Show"}
                     </button>
                 </div>
 
-                {/* Content */}
                 {showNotes && (
                     <div className="mt-4 space-y-4">
-
-                        {/* Chief Complaint */}
                         <div>
                             <label className="block text-sm font-medium text-zinc-300 mb-1">
                                 Chief Complaint
@@ -241,8 +218,6 @@ export default function TreatmentDetails() {
                                 placeholder="Main reason for visit (e.g. Severe pain on lower molar)"
                             />
                         </div>
-
-                        {/* Clinical Findings */}
                         <div>
                             <label className="block text-sm font-medium text-zinc-300 mb-1">
                                 Clinical Findings
@@ -255,8 +230,6 @@ export default function TreatmentDetails() {
                                 placeholder="Observations, exam results, x-ray findings..."
                             />
                         </div>
-
-                        {/* Diagnosis */}
                         <div>
                             <label className="block text-sm font-medium text-zinc-300 mb-1">
                                 Diagnosis
@@ -269,8 +242,6 @@ export default function TreatmentDetails() {
                                 placeholder="Clinical diagnosis"
                             />
                         </div>
-
-                        {/* Treatment Plan */}
                         <div>
                             <label className="block text-sm font-medium text-zinc-300 mb-1">
                                 Treatment Plan
@@ -283,8 +254,6 @@ export default function TreatmentDetails() {
                                 placeholder="Planned procedures and medications"
                             />
                         </div>
-
-                        {/* Follow-up */}
                         <div>
                             <label className="block text-sm font-medium text-zinc-300 mb-1">
                                 Follow-up Instructions
@@ -297,7 +266,6 @@ export default function TreatmentDetails() {
                                 placeholder="Return visit schedule or special instructions"
                             />
                         </div>
-
                     </div>
                 )}
             </Card>
@@ -324,9 +292,7 @@ export default function TreatmentDetails() {
 
                             <input
                                 value={proc.name}
-                                onChange={(e) =>
-                                    updateProcedure(index, "name", e.target.value)
-                                }
+                                onChange={(e) => updateProcedure(index, "name", e.target.value)}
                                 placeholder="Procedure Name"
                                 className="w-full rounded bg-zinc-800 px-3 py-2 text-sm text-white"
                             />
@@ -334,26 +300,20 @@ export default function TreatmentDetails() {
                             <div className="grid md:grid-cols-3 gap-3">
                                 <input
                                     value={proc.tooth}
-                                    onChange={(e) =>
-                                        updateProcedure(index, "tooth", e.target.value)
-                                    }
+                                    onChange={(e) => updateProcedure(index, "tooth", e.target.value)}
                                     placeholder="Tooth No."
                                     className="rounded bg-zinc-800 px-3 py-2 text-sm text-white"
                                 />
                                 <input
                                     value={proc.findings}
-                                    onChange={(e) =>
-                                        updateProcedure(index, "findings", e.target.value)
-                                    }
+                                    onChange={(e) => updateProcedure(index, "findings", e.target.value)}
                                     placeholder="Findings"
                                     className="rounded bg-zinc-800 px-3 py-2 text-sm text-white"
                                 />
                                 <input
                                     type="number"
                                     value={proc.cost}
-                                    onChange={(e) =>
-                                        updateProcedure(index, "cost", e.target.value)
-                                    }
+                                    onChange={(e) => updateProcedure(index, "cost", e.target.value)}
                                     placeholder="Cost"
                                     className="rounded bg-zinc-800 px-3 py-2 text-sm text-white"
                                 />
@@ -386,32 +346,23 @@ export default function TreatmentDetails() {
                         >
                             <input
                                 value={med.name}
-                                onChange={(e) =>
-                                    updatePrescription(index, "name", e.target.value)
-                                }
+                                onChange={(e) => updatePrescription(index, "name", e.target.value)}
                                 placeholder="Medicine"
                                 className="w-1/4 rounded bg-zinc-800 px-3 py-1.5 text-sm text-white"
                             />
-
                             <input
                                 value={med.dosage}
-                                onChange={(e) =>
-                                    updatePrescription(index, "dosage", e.target.value)
-                                }
+                                onChange={(e) => updatePrescription(index, "dosage", e.target.value)}
                                 placeholder="Dosage"
                                 className="flex-1 rounded bg-zinc-800 px-3 py-1.5 text-sm text-white"
                             />
-
                             <input
                                 type="number"
                                 value={med.price}
-                                onChange={(e) =>
-                                    updatePrescription(index, "price", e.target.value)
-                                }
+                                onChange={(e) => updatePrescription(index, "price", e.target.value)}
                                 placeholder="Price"
                                 className="w-28 rounded bg-zinc-800 px-3 py-1.5 text-sm text-white"
                             />
-
                             <button
                                 onClick={() => deletePrescription(index)}
                                 className="text-red-400 hover:text-red-300"
@@ -443,6 +394,24 @@ export default function TreatmentDetails() {
 
             <MedicalHistoryCard />
             <TreatmentHistoryCard />
+
+            {/* ── Floating Save Button ── */}
+            <div className="fixed bottom-6 right-6 z-50">
+                <button
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className="flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-green-900/40 hover:bg-green-500 disabled:opacity-50 transition-all cursor-pointer"
+                >
+                    {isSaving ? (
+                        <>
+                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                            Saving...
+                        </>
+                    ) : (
+                        "Save Treatment"
+                    )}
+                </button>
+            </div>
         </div>
     );
 }

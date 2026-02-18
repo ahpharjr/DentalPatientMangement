@@ -21,7 +21,7 @@ const menu = [
   { label: "Procedures", icon: Stethoscope, path: "/procedures" },
   { label: "Appointments", icon: Calendar, path: "/appointments" },
   { label: "Treatment", icon: Activity, path: "/treatments" },
-  { label: "Treatment History", icon: ClipboardCheck, path: "/treatment-history" },
+  { label: "Treatment History", icon: ClipboardCheck, path: "/treatment-histories" },
   { label: "Reports", icon: BarChart3, path: "/reports" },
 ];
 
