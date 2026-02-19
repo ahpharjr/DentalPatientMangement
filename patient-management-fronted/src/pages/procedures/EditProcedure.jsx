@@ -3,13 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PageHeader from "../../components/ui/PageHeader";
 import Card from "../../components/ui/Card";
 import { ArrowLeft } from "lucide-react";
-
-// same mock data as details page
-const mockProcedure = {
-  id: "1",
-  name: "Dental cleaning",
-  description: "This is a dental cleaning basic",
-};
+import { procedures } from "../../data/procedures";
 
 export default function EditProcedure() {
   const navigate = useNavigate();
@@ -22,8 +16,8 @@ export default function EditProcedure() {
   // preload existing data
   useEffect(() => {
     // later: fetch by id
-    setName(mockProcedure.name);
-    setDescription(mockProcedure.description);
+    setName(procedures.name);
+    setDescription(procedures.description);
   }, [id]);
 
   const handleSubmit = (e) => {

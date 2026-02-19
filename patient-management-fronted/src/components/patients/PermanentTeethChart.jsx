@@ -151,7 +151,7 @@ export default function PermanentTeethChart() {
             <button
                 // onClick={() => navigate(`/patients/${id}`)}
                 onClick={() => navigate(-1)}
-                className="flex items-center gap-1 text-sm text-zinc-400 hover:text-white"
+                className="flex items-center gap-1 text-sm text-zinc-400 hover:text-white cursor-pointer"
             >
                 <ArrowLeft className="h-4 w-4" />
                 Back 
@@ -394,7 +394,7 @@ function ToothModal({ tooth, markings, onClose, onAddMarking }) {
                         onClick={onAddMarking}
                         className="flex items-center gap-1 rounded-md
                        border border-white/10 bg-zinc-800
-                       px-3 py-1 text-xs hover:bg-zinc-700"
+                       px-3 py-1 text-xs hover:bg-zinc-700 cursor-pointer"
                     >
                         <span className="text-sm">＋</span>
                         Add Marking

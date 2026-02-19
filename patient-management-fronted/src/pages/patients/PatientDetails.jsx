@@ -21,7 +21,7 @@ export default function PatientDetails() {
         <div>
           <button
             onClick={() => navigate(-1)}
-            className="mb-2 flex items-center gap-1 text-sm text-zinc-400 hover:text-white"
+            className="mb-2 flex items-center gap-1 text-sm text-zinc-400 hover:text-white cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
             Back 

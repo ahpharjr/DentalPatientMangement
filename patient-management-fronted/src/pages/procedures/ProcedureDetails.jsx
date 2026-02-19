@@ -2,21 +2,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import PageHeader from "../../components/ui/PageHeader";
 import Card from "../../components/ui/Card";
 import { ArrowLeft, Pencil, Stethoscope, CalendarClock  } from "lucide-react";
-
-const mockProcedure = {
-    id: "1",
-    name: "Dental cleaning",
-    description: "This is a dental cleaning basic",
-    createdAt: "September 27th, 2025",
-    updatedAt: "September 27th, 2025",
-};
+import { procedures } from "../../data/procedures";
 
 export default function ProcedureDetails() {
     const navigate = useNavigate();
     const { id } = useParams();
 
     // later: fetch by id
-    const procedure = mockProcedure;
+    const procedure = procedures;
 
     return (
         <div className="space-y-6">
