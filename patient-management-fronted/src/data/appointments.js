@@ -9,6 +9,7 @@ export const appointments = [
     paymentMethod: "GCash",
     followUp: true,
     nextAppointment: "2026-05-16",
+    status: "done",
     procedures: [
       {
         id: 1,

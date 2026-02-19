@@ -1,13 +1,25 @@
 import { Eye, Pencil, CheckCircle, Trash2, MoreVertical } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function AppointmentActions({ id }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
 
   return (
-    <div className="relative inline-block text-left">
+    <div ref={ref} className="relative inline-block text-left">
       <button
         onClick={() => setOpen(!open)}
         className="rounded-md p-1 text-zinc-400 hover:bg-zinc-700 hover:text-white cursor-pointer"
@@ -33,7 +45,10 @@ export function AppointmentActions({ id }) {
             Edit Appointment
           </button>
 
-          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-white hover:bg-zinc-800">
+          <button
+            onClick={() => setOpen(false)}
+            className="flex w-full items-center gap-2 px-4 py-2 text-sm text-white hover:bg-zinc-800"
+          >
             <CheckCircle className="h-4 w-4" />
             Mark as Done
           </button>

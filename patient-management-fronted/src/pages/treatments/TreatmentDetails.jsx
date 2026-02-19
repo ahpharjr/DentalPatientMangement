@@ -19,7 +19,7 @@ export default function TreatmentDetails() {
         paymentStatus: "Unpaid",
         dentist: "Dr. Maria Santos",
         patient: {
-            id: "1",
+            id: "PT-2023-0041",
             fullName: "Dela Cruz, Juan Mantala",
         },
         procedures: [

@@ -53,7 +53,7 @@ export default function AppointmentForm({ appointment = null, onSubmit }) {
         </Field>
 
         {/* Date & Time */}
-        <div className="grid grid-cols-2 gap-4">
+        {/* <div className="grid grid-cols-2 gap-4">
           <Field label="Scheduled Date" required>
             <input
               type="date"
@@ -66,6 +66,25 @@ export default function AppointmentForm({ appointment = null, onSubmit }) {
               type="time"
               defaultValue={appointment?.time}
               className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-800 px-3 py-2 text-sm text-white"
+            />
+          </Field>
+        </div> */}
+        {/* Date & Time */}
+        <div className="grid grid-cols-2 gap-4">
+          <Field label="Scheduled Date" required>
+            <input
+              type="date"
+              defaultValue={appointment?.date}
+              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-800 px-3 py-2 text-sm text-white"
+              style={{ colorScheme: "dark" }}
+            />
+          </Field>
+          <Field label="Scheduled Time" required>
+            <input
+              type="time"
+              defaultValue={appointment?.time}
+              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-800 px-3 py-2 text-sm text-white"
+              style={{ colorScheme: "dark" }}
             />
           </Field>
         </div>
