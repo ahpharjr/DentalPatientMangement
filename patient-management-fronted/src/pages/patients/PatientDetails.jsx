@@ -17,6 +17,7 @@ const patients = [
     address: "123 J. Acosta, Pagsil Laguna",
     email: null,
     phone: null,
+    qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://facebook.com/juandelacruz"
   },
 ];
 
@@ -33,11 +34,11 @@ export default function PatientDetails() {
       <div className="flex items-center justify-between">
         <div>
           <button
-            onClick={() => navigate("/patients")}
+            onClick={() => navigate(-1)}
             className="mb-2 flex items-center gap-1 text-sm text-zinc-400 hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Patients
+            Back 
           </button>
 
           <h1 className="text-2xl font-semibold text-white">

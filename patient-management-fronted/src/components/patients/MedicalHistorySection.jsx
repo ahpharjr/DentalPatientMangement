@@ -1,5 +1,4 @@
 import Checkbox from "../ui/Checkbox";
-import Textarea from "../ui/Testarea";
 
 export default function MedicalHistorySection() {
   return (
@@ -32,10 +31,10 @@ export default function MedicalHistorySection() {
             <Checkbox label="None" />
           </div>
           <div className="mt-3">
-            <label className="text-sm ">Address</label>
+            <label className="text-sm ">History Notes</label>
             <textarea
               name="address"
-              placeholder="Please specify details about medical conditions..."
+              placeholder="Please specify details about medical conditions or treatment history..."
               rows="3"
               className=" w-full rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
             />

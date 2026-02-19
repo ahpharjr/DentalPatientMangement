@@ -27,7 +27,7 @@ export default function Patients() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
             <input
-              placeholder="Search patients by name..."
+              placeholder="Search patients by ID or name..."
               className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
             />
           </div>
