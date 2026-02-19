@@ -1,19 +1,25 @@
-import { User } from "lucide-react";
+import { User} from "lucide-react";
+import CopyableId from "../ui/CopyableId";
 import Card from "../ui/Card";
 
 export default function PersonalInfoCard({ patient }) {
+
   return (
     <Card>
-      <div className="mb-4 flex items-center gap-2">
-        <User className="h-4 w-4 text-zinc-400" />
-        <div>
-          <h3 className="text-sm font-medium text-white">
-            Personal Information
-          </h3>
-          <p className="text-xs text-zinc-400">
-            Basic details about this patient
-          </p>
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <User className="h-4 w-4 text-zinc-400" />
+          <div>
+            <h3 className="text-sm font-medium text-white">
+              Personal Information
+            </h3>
+            <p className="text-xs text-zinc-400">
+              Basic details about this patient
+            </p>
+          </div>
         </div>
+
+        <CopyableId value={patient.id} />
       </div>
 
       <div className="space-y-3 text-sm">

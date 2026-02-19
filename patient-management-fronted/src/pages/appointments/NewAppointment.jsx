@@ -1,18 +1,8 @@
 import { ArrowLeft, Plus, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
-const patients = [
-  { id: "1", name: "Dela Cruz, Juan" },
-  { id: "2", name: "Santos, Maria" },
-];
-
-const procedures = [
-  "Dental Cleaning",
-  "Tooth Extraction",
-  "Root Canal",
-  "Filling",
-];
+import { patients } from "../../data/patients";
+import { procedures } from "../../data/procedures";
 
 export default function NewAppointment() {
   const navigate = useNavigate();
@@ -162,7 +152,7 @@ export default function NewAppointment() {
                   <select className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white">
                     <option>Select a procedure</option>
                     {procedures.map((p) => (
-                      <option key={p}>{p}</option>
+                      <option key={p}>{p.name}</option>
                     ))}
                   </select>
                 </div>

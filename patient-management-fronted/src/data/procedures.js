@@ -1,0 +1,58 @@
+export const procedures = [
+  {
+    id: "1",
+    name: "Dental Cleaning (Prophylaxis)",
+    description: "Professional removal of plaque and tartar to maintain oral hygiene and prevent gum disease.",
+    createdAt: "Jan 12, 2023, 9:00 AM",
+    updatedAt: "Mar 4, 2024, 11:23 AM",
+  },
+  {
+    id: "2",
+    name: "Tooth Extraction",
+    description: "Removal of a damaged, decayed, or impacted tooth under local anesthesia.",
+    createdAt: "Jan 12, 2023, 9:05 AM",
+    updatedAt: "Jun 18, 2024, 2:45 PM",
+  },
+  {
+    id: "3",
+    name: "Dental Filling (Composite)",
+    description: "Restoration of decayed tooth structure using tooth-colored composite material.",
+    createdAt: "Feb 3, 2023, 10:30 AM",
+    updatedAt: "Feb 3, 2023, 10:30 AM",
+  },
+  {
+    id: "4",
+    name: "Root Canal Treatment",
+    description: "Treatment to remove infected pulp tissue and seal the tooth to prevent reinfection.",
+    createdAt: "Feb 3, 2023, 10:45 AM",
+    updatedAt: "Sep 9, 2024, 8:10 AM",
+  },
+  {
+    id: "5",
+    name: "Teeth Whitening",
+    description: "Cosmetic procedure to lighten tooth color and remove stains or discoloration.",
+    createdAt: "Mar 22, 2023, 1:00 PM",
+    updatedAt: "Mar 22, 2023, 1:00 PM",
+  },
+  {
+    id: "6",
+    name: "Dental Crown Placement",
+    description: "Placement of a custom-made crown to restore strength, shape, and function of a damaged tooth.",
+    createdAt: "Apr 7, 2023, 3:15 PM",
+    updatedAt: "Nov 14, 2024, 4:30 PM",
+  },
+  {
+    id: "7",
+    name: "Orthodontic Braces Installation",
+    description: "Application of braces to correct misaligned teeth and improve bite alignment.",
+    createdAt: "Jul 19, 2023, 11:00 AM",
+    updatedAt: "Jul 19, 2023, 11:00 AM",
+  },
+  {
+    id: "8",
+    name: "Dental Implant Surgery",
+    description: "Surgical placement of a titanium implant to replace a missing tooth root.",
+    createdAt: "Oct 5, 2023, 9:30 AM",
+    updatedAt: "Jan 22, 2025, 10:05 AM",
+  },
+];

@@ -32,7 +32,7 @@ export default function DentalChartsCard() {
                     </p>
                     <button 
                         onClick={() => navigate(`/patients/${id}/primary-teeth`)}
-                        className="w-full rounded-lg bg-white px-4 py-2 text-sm text-black hover:bg-zinc-200">
+                        className="w-full rounded-lg bg-white px-4 py-2 text-sm text-black hover:bg-zinc-200 cursor-pointer">
                         View Primary Chart
                     </button>
                 </div>
@@ -46,7 +46,7 @@ export default function DentalChartsCard() {
                     </p>
                     <button 
                         onClick={() => navigate(`/patients/${id}/permanent-teeth`)}
-                        className="w-full rounded-lg bg-white px-4 py-2 text-sm text-black hover:bg-zinc-200">
+                        className="w-full rounded-lg bg-white px-4 py-2 text-sm text-black hover:bg-zinc-200 cursor-pointer">
                         View Permanent Chart
                     </button>
                 </div>
