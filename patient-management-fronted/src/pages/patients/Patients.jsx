@@ -76,15 +76,15 @@ export default function Patients() {
                   key={p.id}
                   className="border-t border-white/10 hover:bg-zinc-900/50"
                 >
-                  <td className="px-4 py-2">
+                  <td className="px-2 py-2">
                     <span className="text-white">{p.name}</span>
                     <p className="text-xs text-zinc-500">#{p.id}</p>
                   </td>
-                  <td className="px-4 py-2">{p.age}</td>
-                  <td className="px-4 py-2">{p.gender}</td>
-                  <td className="px-4 py-2">{p.email}</td>
-                  <td className="px-4 py-2">{p.clinic}</td>
-                  <td className="px-4 py-2 text-right">
+                  <td className="px-2 py-2">{p.age}</td>
+                  <td className="px-2 py-2">{p.gender}</td>
+                  <td className="px-2 py-2">{p.email}</td>
+                  <td className="px-2 py-2">{p.clinic}</td>
+                  <td className="px-2 py-2 text-right">
                     <RowActions
                       onView={() => navigate(`/patients/${p.id}`)}
                       onEdit={() => navigate(`/patients/${p.id}/edit`)}

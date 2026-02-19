@@ -1,11 +1,7 @@
 export const appointments = [
   {
     id: "1",
-    patient: {
-      name: "Santos, Maria L.",
-      email: "maria.santos@email.com",
-      phone: "0917-234-8891",
-    },
+    patientId: "PT-2023-0041",
     date: "2026-02-16",
     time: "09:00 AM",
     cost: 1200,
@@ -25,11 +21,7 @@ export const appointments = [
   },
   {
     id: "2",
-    patient: {
-      name: "Reyes, Carlo P.",
-      email: "carlo.reyes@email.com",
-      phone: "0928-778-5521",
-    },
+    patientId: "PT-2023-0087",
     date: "2026-02-17",
     time: "10:30 AM",
     cost: 4500,
@@ -49,11 +41,7 @@ export const appointments = [
   },
   {
     id: "3",
-    patient: {
-      name: "Garcia, Angela M.",
-      email: "angela.garcia@email.com",
-      phone: "0995-443-2210",
-    },
+    patientId: "PT-2023-0112",
     date: "2026-02-18",
     time: "02:00 PM",
     cost: 900,
@@ -73,11 +61,7 @@ export const appointments = [
   },
   {
     id: "4",
-    patient: {
-      name: "Torres, Michael A.",
-      email: "michael.torres@email.com",
-      phone: "0916-998-4455",
-    },
+    patientId: "PT-2024-0008",
     date: "2026-02-19",
     time: "11:15 AM",
     cost: 18000,
@@ -97,11 +81,7 @@ export const appointments = [
   },
   {
     id: "5",
-    patient: {
-      name: "Villanueva, Sophia R.",
-      email: "sophia.v@email.com",
-      phone: "0932-111-7823",
-    },
+    patientId: "PT-2024-0034",
     date: "2026-02-20",
     time: "04:00 PM",
     cost: 2500,
@@ -121,11 +101,7 @@ export const appointments = [
   },
   {
     id: "6",
-    patient: {
-      name: "Lim, Daniel K.",
-      email: "daniel.lim@email.com",
-      phone: "0918-654-3321",
-    },
+    patientId: "PT-2024-0059",
     date: "2026-02-21",
     time: "09:45 AM",
     cost: 5200,
@@ -145,11 +121,7 @@ export const appointments = [
   },
   {
     id: "7",
-    patient: {
-      name: "Chua, Isabella T.",
-      email: "isabella.chua@email.com",
-      phone: "0927-333-9012",
-    },
+    patientId: "PT-2024-0073",
     date: "2026-02-22",
     time: "01:30 PM",
     cost: 6500,
@@ -169,11 +141,7 @@ export const appointments = [
   },
   {
     id: "8",
-    patient: {
-      name: "Tan, Joshua C.",
-      email: null,
-      phone: "0919-887-2211",
-    },
+    patientId: "PT-2024-0091",
     date: "2026-02-23",
     time: "08:30 AM",
     cost: 1200,

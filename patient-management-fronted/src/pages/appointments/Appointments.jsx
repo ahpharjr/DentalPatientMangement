@@ -3,6 +3,8 @@ import { useState } from "react";
 import PageHeader from "../../components/ui/PageHeader";
 import { AppointmentActions } from "../../components/ui/AppointmentActions";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { appointments as appointmentsData } from "../../data/appointments";
+import { patients } from "../../data/patients";
 
 const filters = [
   { key: "scheduled", label: "Scheduled" },
@@ -11,53 +13,56 @@ const filters = [
   { key: "done", label: "Done" },
 ];
 
+// Join appointments with patient records
+const enrichedAppointments = appointmentsData.map((appt) => ({
+  ...appt,
+  patient: patients.find((p) => p.id === appt.patientId) ?? null,
+}));
+
 export default function Appointments() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const filterFromURL = searchParams.get("filter");
-
   const isValidFilter = filters.some((f) => f.key === filterFromURL);
+  const [activeFilter, setActiveFilter] = useState(isValidFilter ? filterFromURL : "scheduled");
+  const [query, setQuery] = useState("");
+  const [appointments] = useState(enrichedAppointments);
 
-  const [activeFilter, setActiveFilter] = useState(
-    isValidFilter ? filterFromURL : "scheduled"
-  );
+  const isToday = (date) => new Date(date).toDateString() === new Date().toDateString();
 
-  const formatDateTime = (date) => {
-    return new Date(date).toLocaleString("en-US", {
+  const isNext3Days = (date) => {
+    const diff = (new Date(date) - new Date()) / (1000 * 60 * 60 * 24);
+    return diff >= 0 && diff <= 3;
+  };
+
+  const formatDateTime = (date, time) =>
+    new Date(`${date} ${time}`).toLocaleString("en-US", {
       month: "short",
       day: "numeric",
       year: "numeric",
       hour: "numeric",
       minute: "2-digit",
     });
-  };
-
-  const isToday = (date) => {
-    const d = new Date(date);
-    const today = new Date();
-    return d.toDateString() === today.toDateString();
-  };
-
-  const isNext3Days = (date) => {
-    const d = new Date(date);
-    const today = new Date();
-    const diff = (d - today) / (1000 * 60 * 60 * 24);
-    return diff >= 0 && diff <= 3;
-  };
-
-  const [appointments] = useState(appointmentsData);
 
   const filteredAppointments = appointments.filter((appt) => {
-    if (activeFilter === "today") return isToday(appt.scheduledAt);
-    if (activeFilter === "next3") return isNext3Days(appt.scheduledAt);
-    if (activeFilter === "done") return appt.status === "done";
-    return appt.status === "scheduled";
+    const matchesFilter =
+      activeFilter === "today" ? isToday(appt.date) :
+      activeFilter === "next3" ? isNext3Days(appt.date) :
+      activeFilter === "done" ? appt.status === "done" :
+      appt.status !== "done";
+
+    const q = query.toLowerCase();
+    const matchesSearch =
+      !q ||
+      appt.patient?.name?.toLowerCase().includes(q) ||
+      appt.procedures[0]?.procedure?.toLowerCase().includes(q);
+
+    return matchesFilter && matchesSearch;
   });
 
   return (
     <div className="space-y-4">
-      {/* Header */}
       <PageHeader
         title="Appointments"
         subtitle="Manage your dental appointments and patient records"
@@ -73,40 +78,35 @@ export default function Appointments() {
       />
 
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2">
-        <div className="flex rounded-lg border border-white/10 bg-zinc-900 p-1">
-          {filters.map((f) => (
-            <button
-              key={f.key}
-              onClick={() => {
-                setActiveFilter(f.key);
-                setSearchParams({ filter: f.key });
-              }}
-              className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition
-                ${
-                  activeFilter === f.key
-                    ? "bg-zinc-800 text-white"
-                    : "text-zinc-400 hover:text-white"
-                }`}
-            >
-              <Calendar className="h-4 w-4" />
-              {f.label}
-            </button>
-          ))}
-        </div>
+      <div className="flex rounded-lg border border-white/10 bg-zinc-900 p-1 w-fit">
+        {filters.map((f) => (
+          <button
+            key={f.key}
+            onClick={() => {
+              setActiveFilter(f.key);
+              setSearchParams({ filter: f.key });
+            }}
+            className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition
+              ${activeFilter === f.key ? "bg-zinc-800 text-white" : "text-zinc-400 hover:text-white"}`}
+          >
+            <Calendar className="h-4 w-4" />
+            {f.label}
+          </button>
+        ))}
       </div>
 
-      {/* Search + Actions */}
+      {/* Search + count */}
       <div className="flex items-center justify-between">
-        <div className="flex flex-wrap items-center gap-2 max-w-md w-full">
+        <div className="flex items-center gap-2 max-w-md w-full">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
             <input
-              placeholder="Search appointments by patient or procedure..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search by patient or procedure..."
               className="w-full rounded-lg border border-white/10 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500"
             />
           </div>
-
           <button className="flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white hover:bg-zinc-800">
             <RotateCcw className="h-4 w-4" />
             Refresh
@@ -116,7 +116,8 @@ export default function Appointments() {
         <p className="text-sm text-zinc-400 mr-4">
           Total Appointments:{" "}
           <span className="font-semibold text-white">
-            {appointments.length}
+            {filteredAppointments.length}
+            {query && <span className="text-zinc-500"> of {appointments.length}</span>}
           </span>
         </p>
       </div>
@@ -125,12 +126,8 @@ export default function Appointments() {
       <div className="rounded-lg border border-white/10 bg-zinc-900">
         {filteredAppointments.length === 0 ? (
           <div className="flex min-h-55 flex-col items-center justify-center gap-4 text-center">
-            <h3 className="text-lg font-medium text-white">
-              No Appointments Found
-            </h3>
-            <p className="text-sm text-zinc-400">
-              There are no appointments under this filter.
-            </p>
+            <h3 className="text-lg font-medium text-white">No Appointments Found</h3>
+            <p className="text-sm text-zinc-400">There are no appointments under this filter.</p>
             <button
               onClick={() => navigate("/appointments/new")}
               className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-200"
@@ -144,43 +141,27 @@ export default function Appointments() {
               <tr>
                 <th className="px-4 py-3 text-left">Patient</th>
                 <th className="px-4 py-3 text-left">Scheduled</th>
-                <th className="px-4 py-3 text-left">Cost</th>
-                <th className="px-4 py-3 text-left">Payment Status</th>
+                <th className="px-4 py-3 text-left">Procedure</th>
+                <th className="px-4 py-3 text-left">Contact No.</th>
                 <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
-
             <tbody>
               {filteredAppointments.map((appt) => (
-                <tr
-                  key={appt.id}
-                  className="border-b border-white/5 hover:bg-zinc-800/40"
-                >
-                  <td className="px-4 py-3 text-white">
-                    {appt.patient}
-                  </td>
-
-                  <td className="px-4 py-3 text-zinc-300">
-                    {formatDateTime(appt.scheduledAt)}
-                  </td>
-
-                  <td className="px-4 py-3 text-zinc-300">
-                    ₱{appt.cost.toFixed(2)}
-                  </td>
-
+                <tr key={appt.id} className="border-b border-white/5 hover:bg-zinc-800/40">
                   <td className="px-4 py-3">
-                    <span
-                      className={`rounded-full px-2 py-1 text-xs font-medium
-                        ${
-                          appt.paymentStatus === "paid"
-                            ? "bg-green-500/10 text-green-400"
-                            : "bg-red-500/10 text-red-400"
-                        }`}
-                    >
-                      {appt.paymentStatus === "paid" ? "Paid" : "Unpaid"}
-                    </span>
+                    <span className="text-white">{appt.patient?.name ?? "Unknown Patient"}</span>
+                    <p className="text-xs text-zinc-500">#{appt.patientId}</p>
                   </td>
-
+                  <td className="px-4 py-3 text-zinc-300">
+                    {formatDateTime(appt.date, appt.time)}
+                  </td>
+                  <td className="px-4 py-3 text-zinc-300">
+                    {appt.procedures[0]?.procedure ?? "—"}
+                  </td>
+                  <td className="px-4 py-3 text-zinc-300">
+                    {appt.patient?.phone ?? "Not provided"}
+                  </td>
                   <td className="px-4 py-3 text-right">
                     <AppointmentActions id={appt.id} />
                   </td>
@@ -193,142 +174,3 @@ export default function Appointments() {
     </div>
   );
 }
-
-const appointmentsData = [
-  {
-    id: 1,
-    patient: "Santos, Maria L.",
-    scheduledAt: "2026-02-16T09:00",
-    cost: 1200,
-    paymentStatus: "paid",
-    status: "done",
-    procedures: ["Dental Cleaning"],
-  },
-  {
-    id: 2,
-    patient: "Reyes, Carlo P.",
-    scheduledAt: "2026-02-17T10:30",
-    cost: 3500,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Root Canal Treatment"],
-  },
-  {
-    id: 3,
-    patient: "Garcia, Angela M.",
-    scheduledAt: "2026-02-18T14:00",
-    cost: 800,
-    paymentStatus: "paid",
-    status: "scheduled",
-    procedures: ["Dental Filling (Composite)"],
-  },
-  {
-    id: 4,
-    patient: "Torres, Michael A.",
-    scheduledAt: "2026-02-19T11:15",
-    cost: 15000,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Dental Implant Surgery"],
-  },
-  {
-    id: 5,
-    patient: "Villanueva, Sophia R.",
-    scheduledAt: "2026-02-20T16:00",
-    cost: 2500,
-    paymentStatus: "paid",
-    status: "done",
-    procedures: ["Tooth Extraction"],
-  },
-  {
-    id: 6,
-    patient: "Lim, Daniel K.",
-    scheduledAt: "2026-02-21T09:45",
-    cost: 5000,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Dental Crown Placement"],
-  },
-  {
-    id: 7,
-    patient: "Chua, Isabella T.",
-    scheduledAt: "2026-02-22T13:30",
-    cost: 6000,
-    paymentStatus: "paid",
-    status: "scheduled",
-    procedures: ["Orthodontic Braces Installation"],
-  },
-  {
-    id: 8,
-    patient: "Tan, Joshua C.",
-    scheduledAt: "2026-02-23T08:30",
-    cost: 1200,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Dental Cleaning"],
-  },
-  {
-    id: 9,
-    patient: "Lopez, Camille D.",
-    scheduledAt: "2026-02-24T15:00",
-    cost: 2800,
-    paymentStatus: "paid",
-    status: "done",
-    procedures: ["Teeth Whitening"],
-  },
-  {
-    id: 10,
-    patient: "Fernandez, Mark J.",
-    scheduledAt: "2026-02-25T10:00",
-    cost: 4000,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Dental Crown Placement"],
-  },
-  {
-    id: 11,
-    patient: "Cruz, Andrea P.",
-    scheduledAt: "2026-02-26T09:30",
-    cost: 950,
-    paymentStatus: "paid",
-    status: "scheduled",
-    procedures: ["Dental Filling (Composite)"],
-  },
-  {
-    id: 12,
-    patient: "Navarro, Kevin R.",
-    scheduledAt: "2026-02-27T14:15",
-    cost: 18000,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Dental Implant Surgery"],
-  },
-  {
-    id: 13,
-    patient: "Gonzales, Patricia M.",
-    scheduledAt: "2026-02-28T11:45",
-    cost: 3200,
-    paymentStatus: "paid",
-    status: "done",
-    procedures: ["Root Canal Treatment"],
-  },
-  {
-    id: 14,
-    patient: "Sy, Benjamin T.",
-    scheduledAt: "2026-03-01T13:00",
-    cost: 2200,
-    paymentStatus: "unpaid",
-    status: "scheduled",
-    procedures: ["Tooth Extraction"],
-  },
-  {
-    id: 15,
-    patient: "Aquino, Hannah L.",
-    scheduledAt: "2026-03-02T16:30",
-    cost: 5500,
-    paymentStatus: "paid",
-    status: "scheduled",
-    procedures: ["Orthodontic Braces Installation"],
-  },
-];
-
