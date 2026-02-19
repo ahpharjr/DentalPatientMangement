@@ -1,19 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-
-const patients = [
-  { id: "1", fullName: "Dela Cruz, Juan Mantala" },
-  { id: "2", fullName: "Santos, Maria Clara" },
-];
-
-const procedures = [
-  "Tooth Extraction",
-  "Dental Cleaning",
-  "Root Canal",
-  "Tooth Filling",
-  "Braces Adjustment",
-];
+import { patients } from "../../data/patients";
+import { procedures } from "../../data/procedures";
 
 export default function NewTreatment() {
   const navigate = useNavigate();
@@ -96,8 +85,8 @@ export default function NewTreatment() {
           >
             <option value="">-- Select Procedure --</option>
             {procedures.map((proc, index) => (
-              <option key={index} value={proc}>
-                {proc}
+              <option key={index} value={proc.name}>
+                {proc.name}
               </option>
             ))}
           </select>
