@@ -6,8 +6,10 @@ import Button from "../ui/Button";
 import { useState, useRef } from "react";
 import { QrCode, Upload, X } from "lucide-react";
 
-export default function PatientForm() {
-  const [qrPreview, setQrPreview] = useState(null);
+export default function PatientForm({ patient = null, mode = "create" }) {
+  const isEdit = mode === "edit";
+
+  const [qrPreview, setQrPreview] = useState(patient?.qrCode || null);
   const fileInputRef = useRef(null);
 
   const handleQrUpload = (e) => {
@@ -31,14 +33,19 @@ export default function PatientForm() {
           Patient Information
         </h3>
         <p className="mb-6 text-sm text-zinc-400">
-          Enter the details of the new patient
+          {isEdit ? "Update the patient's details" : "Enter the details of the new patient"}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Input label="Full Name" required />
+          <Input
+            label="Full Name"
+            required
+            defaultValue={patient?.fullName}
+          />
           <Select
             label="Gender"
             required
+            defaultValue={patient?.gender?.toLowerCase()}
             options={[
               { label: "Male", value: "male" },
               { label: "Female", value: "female" },
@@ -50,6 +57,7 @@ export default function PatientForm() {
             </label>
             <input
               type="date"
+              defaultValue={patient?.dob}
               className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-white"
             />
           </div>
@@ -58,6 +66,7 @@ export default function PatientForm() {
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <Select
             label="Marital Status"
+            defaultValue={patient?.maritalStatus?.toLowerCase()}
             options={[
               { label: "Single", value: "single" },
               { label: "Married", value: "married" },
@@ -66,6 +75,7 @@ export default function PatientForm() {
           <Select
             label="Clinic"
             required
+            defaultValue={patient?.clinic}
             options={[
               { label: "None", value: "" },
               { label: "Clinic 1", value: "1" },
@@ -76,17 +86,18 @@ export default function PatientForm() {
 
         {/* Address */}
         <div className="mt-3">
-          <label className="text-sm">Address</label>
+          <label className="text-sm text-zinc-300">Address</label>
           <textarea
             name="address"
             rows="2"
+            defaultValue={patient?.address}
             className="w-full rounded-lg border border-white/10 bg-zinc-900 px-4 py-2 text-white focus:border-blue-500 focus:outline-none"
           />
         </div>
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input label="Email Address" />
-          <Input label="Phone Number" />
+          <Input label="Email Address" defaultValue={patient?.email} />
+          <Input label="Phone Number" defaultValue={patient?.phone} />
         </div>
 
         {/* Social QR Code Upload */}
@@ -140,13 +151,19 @@ export default function PatientForm() {
         </div>
       </section>
 
-      <EmergencyContacts />
-      <MedicalHistorySection />
+      <EmergencyContacts contacts={patient?.emergencyContacts} />
+      <MedicalHistorySection
+        allergies={patient?.allergies}
+        medicalConditions={patient?.medicalConditions}
+        historyNotes={patient?.historyNotes}
+      />
 
       {/* Actions */}
       <div className="flex justify-end gap-3">
-        <Button variant="ghost">Cancel</Button>
-        <Button>Create Patient</Button>
+        <Button variant="ghost" type="button">Cancel</Button>
+        <Button type="submit">
+          {isEdit ? "Save Changes" : "Create Patient"}
+        </Button>
       </div>
     </form>
   );
