@@ -18,6 +18,7 @@ import PermanentTeethChart from "./components/patients/PermanentTeethChart";
 import Appointments from "./pages/appointments/Appointments";
 import NewAppointment from "./pages/appointments/NewAppointment";
 import AppointmentDetails from "./pages/appointments/AppointmentDetails";
+import EditAppointment from "./pages/appointments/EditAppointment";
 import TreatmentHistory from "./pages/treatments/TreatmentHistory";
 import TreatmentHistoryDetails from "./pages/treatments/TreatmentHistoryDetails";
 import Treatments from "./pages/treatments/Treatments";
@@ -59,6 +60,7 @@ function App() {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/appointments/new" element={<NewAppointment />} />
           <Route path="/appointments/:id" element={<AppointmentDetails />} />
+          <Route path="/appointments/:id/edit" element={<EditAppointment />} />
 
           <Route path="/treatments" element={<Treatments />} />
           <Route path="/treatment-histories" element={<TreatmentHistory />} />
