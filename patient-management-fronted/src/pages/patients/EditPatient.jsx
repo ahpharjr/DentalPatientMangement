@@ -1,25 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import PatientForm from "../../components/patients/PatientForm";
-
-const patients = [
-  {
-    id: "1",
-    fullName: "Dela Cruz, Juan Mantala",
-    gender: "Male",
-    dob: "1986-07-05",
-    maritalStatus: "Married",
-    clinic: "1",
-    address: "123 J. Acosta, Pagsil Laguna",
-    email: null,
-    phone: null,
-    qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://facebook.com/juandelacruz",
-    emergencyContacts: [{ id: 1, name: "Maria Dela Cruz", contactNumber: "09171234567", relationship: "Spouse" }],
-    allergies: ["None"],
-    medicalConditions: ["None"],
-    historyNotes: "",
-  },
-];
+import { patients } from "../../data/patients";
 
 export default function EditPatient() {
   const { id } = useParams();

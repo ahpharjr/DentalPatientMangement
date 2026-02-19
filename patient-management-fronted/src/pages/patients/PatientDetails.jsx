@@ -5,21 +5,7 @@ import PersonalInfoCard from "../../components/patients/PersonalInfoCard";
 import ContactInfoCard from "../../components/patients/ContactInfoCard";
 import MedicalHistoryCard from "../../components/patients/MedicalHistoryCard";
 import DentalChartsCard from "../../components/patients/DentalChartsCard";
-
-const patients = [
-  {
-    id: "1",
-    fullName: "Dela Cruz, Juan Mantala",
-    gender: "Male",
-    dob: "July 5th, 1986",
-    maritalStatus: "Married",
-    clinic: "Clinic 1",
-    address: "123 J. Acosta, Pagsil Laguna",
-    email: null,
-    phone: null,
-    qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://facebook.com/juandelacruz"
-  },
-];
+import { patients } from "../../data/patients";
 
 export default function PatientDetails() {
   const { id } = useParams();
